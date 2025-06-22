@@ -1,0 +1,98 @@
+{
+  "navbar": {
+    "home": "Home",
+    "software_testing": "Software testing",
+    "electrician": "Electrician",
+    "youtube": "Youtube",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Professional Testing & Gaming Solutions",
+    "subtitle": "Discover the world of cutting-edge technologies powered by artificial intelligence! We specialize in automated software testing, performance testing, and electrical & electronics. We regularly publish electronic component tests, soldering tutorials, gameplay videos and other technical topics on YouTube. Join our community of enthusiasts – develop your skills and stay up to date with innovations!",
+    "cta_button": "Our Services"
+  },
+  "features": {
+    "title": "Software testing",
+    "software_testing": {
+      "title": "Software Testing",
+      "description": "Comprehensive automation testing, performance testing, and quality assurance services. We ensure your applications run flawlessly across all platforms and environments."
+    },
+    "gaming_solutions": {
+      "title": "Gaming Solutions",
+      "description": "Professional gaming setups, console installations, gaming PC builds, and performance optimization for both competitive and casual gaming experiences."
+    },
+    "hardware_testing": {
+      "title": "Hardware Testing",
+      "description": "Professional hardware diagnostics, component testing, and system validation. From servers to consumer electronics, we ensure optimal performance and reliability."
+    },
+    "electrical_services": {
+      "title": "Electrical Services",
+      "description": "Licensed electrical work including installations, repairs, wiring, and electrical system diagnostics. Safety-certified and code-compliant electrical solutions."
+    }
+  },
+  "electrician": {
+    "title": "Electrician",
+    "residential": {
+      "title": "Residential Electrical",
+      "description": "Complete home electrical services including wiring, outlet installation, panel upgrades, ceiling fans, lighting fixtures, and electrical repairs. Licensed and insured for your safety."
+    },
+    "commercial": {
+      "title": "Commercial Electrical",
+      "description": "Professional commercial electrical work for businesses, offices, and industrial facilities. Emergency electrical services, maintenance contracts, and code compliance inspections."
+    },
+    "troubleshooting": {
+      "title": "Electrical Troubleshooting",
+      "description": "Expert diagnosis and repair of electrical problems. Circuit breaker issues, power outages, faulty wiring detection, and electrical safety inspections using advanced testing equipment."
+    },
+    "smart_home": {
+      "title": "Smart Home Installation",
+      "description": "Modern smart home electrical solutions including smart switches, outlets, home automation systems, EV charging stations, and energy-efficient LED lighting installations."
+    }
+  },
+  "youtube": {
+    "title": "YouTube",
+    "watch_videos": "Watch Our Latest Videos",
+    "description": "Check out our YouTube channel for tutorials, behind-the-scenes content, and tech insights. Subscribe to stay updated with our latest content!",
+    "visit_channel": "Visit Our YouTube Channel",
+    "featured_playlists": "Featured Playlists",
+    "playlist_software_testing": "Software Testing",
+    "playlist_software_testing_desc": "Comprehensive tutorials on automated testing, performance testing, and QA best practices",
+    "playlist_gaming_tech": "Gaming Tech",
+    "playlist_gaming_tech_desc": "Gaming setups, hardware reviews, and performance optimization guides",
+    "playlist_electrical_work": "Electrical Work",
+    "playlist_electrical_work_desc": "Safety demonstrations, installation guides, and troubleshooting tips",
+    "playlist_hardware_reviews": "Hardware Reviews",
+    "playlist_hardware_reviews_desc": "In-depth hardware testing, diagnostics, and component reviews",
+    "watch_playlist": "Watch Playlist"
+  },
+  "contact": {
+    "title": "Ready to get started?",
+    "get_in_touch": "Get in Touch",
+    "email": "Email",
+    "phone": "Phone",
+    "website": "Website",
+    "service_area": "Service Area",
+    "service_area_value": "Greater Metro Area",
+    "hours": "Hours",
+    "hours_value": "Mon-Fri 9AM-6PM, Emergency services available",
+    "send_message": "Send us a message",
+    "your_name": "Your Name",
+    "email_address": "Email Address",
+    "service_needed": "Service Needed",
+    "software_testing": "Software Testing",
+    "hardware_testing": "Hardware Testing",
+    "electrical_services": "Electrical Services",
+    "gaming_solutions": "Gaming Solutions",
+    "multiple_services": "Multiple Services",
+    "consultation": "Consultation",
+    "project_details": "Project Details",
+    "project_placeholder": "Describe your project requirements...",
+    "request_quote": "Request Quote",
+    "success_message": "Thank you! We'll provide a detailed quote within 24 hours.",
+    "error_message": "Please fill in all fields."
+  },
+  "footer": {
+    "copyright": "© 2024 aIRONick Technical Services. Licensed & Insured.",
+    "services": "Software Testing • Hardware Testing • Electrical Services • Gaming Solutions"
+  }
+}

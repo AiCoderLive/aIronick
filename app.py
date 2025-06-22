@@ -3,6 +3,8 @@ import pandas as pd
 import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime, timedelta
+import json
+import os
 
 st.set_page_config(
     page_title="aIRONick",
@@ -10,6 +12,58 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed"
 )
+
+# Initialize language in session state
+if 'language' not in st.session_state:
+    st.session_state.language = 'pl'
+
+@st.cache_data
+def load_translations():
+    """Load translation files"""
+    translations = {}
+    
+    # Load Polish translations
+    try:
+        with open('translations/pl.json', 'r', encoding='utf-8') as f:
+            translations['pl'] = json.load(f)
+    except FileNotFoundError:
+        st.error("Polish translation file not found")
+        translations['pl'] = {}
+    
+    # Load English translations
+    try:
+        with open('translations/en.json', 'r', encoding='utf-8') as f:
+            translations['en'] = json.load(f)
+    except FileNotFoundError:
+        st.error("English translation file not found")
+        translations['en'] = {}
+    
+    return translations
+
+def get_translation(key, lang=None):
+    """Get translation for a key with support for nested keys like 'section.key'"""
+    if lang is None:
+        lang = st.session_state.language
+    
+    translations = load_translations()
+    
+    if lang not in translations:
+        return key
+    
+    # Handle nested keys
+    keys = key.split('.')
+    value = translations[lang]
+    
+    try:
+        for k in keys:
+            value = value[k]
+        return value
+    except (KeyError, TypeError):
+        return key
+
+def t(key):
+    """Shorthand for get_translation"""
+    return get_translation(key)
 
 def load_custom_css():
     st.markdown("""
@@ -311,123 +365,123 @@ def load_custom_css():
     """, unsafe_allow_html=True)
 
 def create_navbar():
-    st.markdown("""
+    st.markdown(f"""
     <div class="navbar">
         <div class="navbar-brand">🤖 aIRONick</div>
         <nav class="navbar-nav">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#features" class="nav-link">Software testing</a>
-            <a href="#analytics" class="nav-link">Electrician</a>
-            <a href="#about" class="nav-link">Youtube</a>
-            <a href="#contact" class="nav-link">Contact</a>
+            <a href="#home" class="nav-link">{t('navbar.home')}</a>
+            <a href="#features" class="nav-link">{t('navbar.software_testing')}</a>
+            <a href="#analytics" class="nav-link">{t('navbar.electrician')}</a>
+            <a href="#about" class="nav-link">{t('navbar.youtube')}</a>
+            <a href="#contact" class="nav-link">{t('navbar.contact')}</a>
         </nav>
     </div>
     """, unsafe_allow_html=True)
 
 def create_hero_section():
-    st.markdown("""
+    st.markdown(f"""
     <div class="hero-section" id="home">
-        <h1 class="hero-title">Professional Testing & Gaming Solutions</h1>
-        <p class="hero-subtitle">aIRONick delivers comprehensive software testing, hardware testing, electrical services, and gaming solutions. From automation testing to console gaming setups, we've got you covered.</p>
-        <a href="#features" class="cta-button">Our Services</a>
+        <h1 class="hero-title">{t('hero.title')}</h1>
+        <p class="hero-subtitle">{t('hero.subtitle')}</p>
+        <a href="#features" class="cta-button">{t('hero.cta_button')}</a>
     </div>
     """, unsafe_allow_html=True)
 
 def create_features_section():
-    st.markdown("""
+    st.markdown(f"""
     <div class="section" id="features">
-        <h2 class="section-title">Software testing</h2>
+        <h2 class="section-title">{t('features.title')}</h2>
         <div class="feature-grid">
     """, unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>🔧 Software Testing</h3>
-            <p>Comprehensive automation testing, performance testing, and quality assurance services. We ensure your applications run flawlessly across all platforms and environments.</p>
+            <h3>🔧 {t('features.software_testing.title')}</h3>
+            <p>{t('features.software_testing.description')}</p>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>🎮 Gaming Solutions</h3>
-            <p>Professional gaming setups, console installations, gaming PC builds, and performance optimization for both competitive and casual gaming experiences.</p>
+            <h3>🎮 {t('features.gaming_solutions.title')}</h3>
+            <p>{t('features.gaming_solutions.description')}</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>⚡ Hardware Testing</h3>
-            <p>Professional hardware diagnostics, component testing, and system validation. From servers to consumer electronics, we ensure optimal performance and reliability.</p>
+            <h3>⚡ {t('features.hardware_testing.title')}</h3>
+            <p>{t('features.hardware_testing.description')}</p>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>🔌 Electrical Services</h3>
-            <p>Licensed electrical work including installations, repairs, wiring, and electrical system diagnostics. Safety-certified and code-compliant electrical solutions.</p>
+            <h3>🔌 {t('features.electrical_services.title')}</h3>
+            <p>{t('features.electrical_services.description')}</p>
         </div>
         """, unsafe_allow_html=True)
     
     st.markdown("</div></div>", unsafe_allow_html=True)
 
 def create_analytics_section():
-    st.markdown("""
+    st.markdown(f"""
     <div class="section" id="analytics">
-        <h2 class="section-title">Electrician</h2>
+        <h2 class="section-title">{t('electrician.title')}</h2>
         <div class="feature-grid">
     """, unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>⚡ Residential Electrical</h3>
-            <p>Complete home electrical services including wiring, outlet installation, panel upgrades, ceiling fans, lighting fixtures, and electrical repairs. Licensed and insured for your safety.</p>
+            <h3>⚡ {t('electrician.residential.title')}</h3>
+            <p>{t('electrician.residential.description')}</p>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>🏢 Commercial Electrical</h3>
-            <p>Professional commercial electrical work for businesses, offices, and industrial facilities. Emergency electrical services, maintenance contracts, and code compliance inspections.</p>
+            <h3>🏢 {t('electrician.commercial.title')}</h3>
+            <p>{t('electrician.commercial.description')}</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>🔧 Electrical Troubleshooting</h3>
-            <p>Expert diagnosis and repair of electrical problems. Circuit breaker issues, power outages, faulty wiring detection, and electrical safety inspections using advanced testing equipment.</p>
+            <h3>🔧 {t('electrician.troubleshooting.title')}</h3>
+            <p>{t('electrician.troubleshooting.description')}</p>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>🔌 Smart Home Installation</h3>
-            <p>Modern smart home electrical solutions including smart switches, outlets, home automation systems, EV charging stations, and energy-efficient LED lighting installations.</p>
+            <h3>🔌 {t('electrician.smart_home.title')}</h3>
+            <p>{t('electrician.smart_home.description')}</p>
         </div>
         """, unsafe_allow_html=True)
     
     st.markdown("</div></div>", unsafe_allow_html=True)
 
 def create_about_section():
-    st.markdown("""
+    st.markdown(f"""
     <div class="section" id="about">
-        <h2 class="section-title">YouTube</h2>
+        <h2 class="section-title">{t('youtube.title')}</h2>
     """, unsafe_allow_html=True)
     
-    st.markdown("### 🎥 Watch Our Latest Videos")
-    st.write("Check out our YouTube channel for tutorials, behind-the-scenes content, and tech insights. Subscribe to stay updated with our latest content!")
+    st.markdown(f"### 🎥 {t('youtube.watch_videos')}")
+    st.write(t('youtube.description'))
     
     # Create centered button using Streamlit
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button("🚀 Visit Our YouTube Channel", key="youtube_btn"):
+        if st.button(f"🚀 {t('youtube.visit_channel')}", key="youtube_btn"):
             st.markdown('<meta http-equiv="refresh" content="0; url=https://www.youtube.com/@aIrOnick">', unsafe_allow_html=True)
         st.markdown("""
         <style>
@@ -452,92 +506,92 @@ def create_about_section():
     st.markdown("<br>", unsafe_allow_html=True)
     
     # Featured playlists section
-    st.markdown("### 📺 Featured Playlists")
+    st.markdown(f"### 📺 {t('youtube.featured_playlists')}")
     
     # Create playlist cards
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card" style="text-align: center;">
-            <h4>🔧 Software Testing</h4>
-            <p>Comprehensive tutorials on automated testing, performance testing, and QA best practices</p>
-            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ Watch Playlist</a>
+            <h4>🔧 {t('youtube.playlist_software_testing')}</h4>
+            <p>{t('youtube.playlist_software_testing_desc')}</p>
+            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
+        st.markdown(f"""
         <div class="card" style="text-align: center;">
-            <h4>🎮 Gaming Tech</h4>
-            <p>Gaming setups, hardware reviews, and performance optimization guides</p>
-            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ Watch Playlist</a>
+            <h4>🎮 {t('youtube.playlist_gaming_tech')}</h4>
+            <p>{t('youtube.playlist_gaming_tech_desc')}</p>
+            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card" style="text-align: center;">
-            <h4>⚡ Electrical Work</h4>
-            <p>Safety demonstrations, installation guides, and troubleshooting tips</p>
-            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ Watch Playlist</a>
+            <h4>⚡ {t('youtube.playlist_electrical_work')}</h4>
+            <p>{t('youtube.playlist_electrical_work_desc')}</p>
+            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
         </div>
         """, unsafe_allow_html=True)
         
-        st.markdown("""
+        st.markdown(f"""
         <div class="card" style="text-align: center;">
-            <h4>💻 Hardware Reviews</h4>
-            <p>In-depth hardware testing, diagnostics, and component reviews</p>
-            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ Watch Playlist</a>
+            <h4>💻 {t('youtube.playlist_hardware_reviews')}</h4>
+            <p>{t('youtube.playlist_hardware_reviews_desc')}</p>
+            <a href="https://www.youtube.com/@aIrOnick/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
         </div>
         """, unsafe_allow_html=True)
     
     st.markdown("</div>", unsafe_allow_html=True)
 
 def create_contact_section():
-    st.markdown("""
+    st.markdown(f"""
     <div class="section" id="contact">
-        <h2 class="section-title">Ready to get started?</h2>
+        <h2 class="section-title">{t('contact.title')}</h2>
     """, unsafe_allow_html=True)
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("""
+        st.markdown(f"""
         <div class="card">
-            <h3>Get in Touch</h3>
-            <p>📧 Email: services@aironick.com</p>
-            <p>📱 Phone: +1 (555) TEST-123</p>
-            <p>🌐 Website: www.aironick.com</p>
-            <p>📍 Service Area: Greater Metro Area</p>
-            <p>⏰ Hours: Mon-Fri 9AM-6PM, Emergency services available</p>
+            <h3>{t('contact.get_in_touch')}</h3>
+            <p>📧 {t('contact.email')}: services@aironick.com</p>
+            <p>📱 {t('contact.phone')}: +1 (555) TEST-123</p>
+            <p>🌐 {t('contact.website')}: www.aironick.com</p>
+            <p>📍 {t('contact.service_area')}: {t('contact.service_area_value')}</p>
+            <p>⏰ {t('contact.hours')}: {t('contact.hours_value')}</p>
         </div>
         """, unsafe_allow_html=True)
     
     with col2:
         st.markdown('<div class="card">', unsafe_allow_html=True)
-        st.subheader("Send us a message")
+        st.subheader(t('contact.send_message'))
         
         with st.form("contact_form"):
-            name = st.text_input("Your Name")
-            email = st.text_input("Email Address")
-            service = st.selectbox("Service Needed", ["Software Testing", "Hardware Testing", "Electrical Services", "Gaming Solutions", "Multiple Services", "Consultation"])
-            message = st.text_area("Project Details", height=100, placeholder="Describe your project requirements...")
+            name = st.text_input(t('contact.your_name'))
+            email = st.text_input(t('contact.email_address'))
+            service = st.selectbox(t('contact.service_needed'), [t('contact.software_testing'), t('contact.hardware_testing'), t('contact.electrical_services'), t('contact.gaming_solutions'), t('contact.multiple_services'), t('contact.consultation')])
+            message = st.text_area(t('contact.project_details'), height=100, placeholder=t('contact.project_placeholder'))
             
-            if st.form_submit_button("Request Quote"):
+            if st.form_submit_button(t('contact.request_quote')):
                 if name and email and message:
-                    st.success("Thank you! We'll provide a detailed quote within 24 hours.")
+                    st.success(t('contact.success_message'))
                 else:
-                    st.error("Please fill in all fields.")
+                    st.error(t('contact.error_message'))
         
         st.markdown('</div>', unsafe_allow_html=True)
     
     st.markdown("</div>", unsafe_allow_html=True)
 
 def create_footer():
-    st.markdown("""
+    st.markdown(f"""
     <div class="footer">
-        <p>&copy; 2024 aIRONick Technical Services. Licensed & Insured.</p>
-        <p>Software Testing • Hardware Testing • Electrical Services • Gaming Solutions</p>
+        <p>{t('footer.copyright')}</p>
+        <p>{t('footer.services')}</p>
     </div>
     """, unsafe_allow_html=True)
 
