@@ -364,19 +364,48 @@ def load_custom_css():
     </style>
     """, unsafe_allow_html=True)
 
+
 def create_navbar():
-    st.markdown(f"""
-    <div class="navbar">
-        <div class="navbar-brand">🤖 aIRONick</div>
-        <nav class="navbar-nav">
-            <a href="#home" class="nav-link">{t('navbar.home')}</a>
-            <a href="#features" class="nav-link">{t('navbar.software_testing')}</a>
-            <a href="#analytics" class="nav-link">{t('navbar.electrician')}</a>
-            <a href="#about" class="nav-link">{t('navbar.youtube')}</a>
-            <a href="#contact" class="nav-link">{t('navbar.contact')}</a>
-        </nav>
-    </div>
-    """, unsafe_allow_html=True)
+    if 'language' not in st.session_state:
+        st.session_state.language = 'pl'
+
+    # Jedna linia z logo, menu i dropdownem
+    col1, col2 = st.columns([5, 1])
+
+    with col1:
+        st.markdown(f"""
+        <div style="display: flex; align-items: center; gap: 30px; padding: 10px 0;">
+            <div style="font-weight: bold;">🤖 aIRONick</div>
+            <a href="#home" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('home')">Start</a>
+            <a href="#features" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('features')">Testowanie oprogramowania</a>
+            <a href="#analytics" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('analytics')">Elektryk</a>
+            <a href="#about" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('about')">YouTube</a>
+            <a href="#contact" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('contact')">Kontakt</a>
+        </div>
+        <script>
+        function scrollToSection(sectionId) {{
+            const element = document.getElementById(sectionId);
+            if (element) {{
+                element.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
+            }}
+        }}
+        </script>
+        """, unsafe_allow_html=True)
+
+    with col2:
+        # Dropdown na tym samym poziomie
+        language_options = {"🇵🇱 PL": "pl", "🇬🇧 EN": "en"}
+        selected = st.selectbox(
+            "",
+            list(language_options.keys()),
+            key="language_selector",
+            label_visibility="collapsed"  # Ukrywa etykietę
+        )
+
+        new_lang = language_options[selected]
+        if new_lang != st.session_state.language:
+            st.session_state.language = new_lang
+            st.rerun()
 
 def create_hero_section():
     st.markdown(f"""
