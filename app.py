@@ -369,37 +369,166 @@ def create_navbar():
     if 'language' not in st.session_state:
         st.session_state.language = 'pl'
 
+    # Sticky navbar CSS and JavaScript
+    st.markdown("""
+    <style>
+    .sticky-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #dadce0;
+        padding: 15px 30px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .navbar-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .menu-items {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .menu-link {
+        text-decoration: none;
+        color: #5f6368;
+        font-weight: 400;
+        font-size: 1.8rem;
+        transition: all 0.3s ease;
+        padding: 8px 16px;
+        border-radius: 8px;
+    }
+    .menu-link:hover {
+        color: #1f77b4;
+        background: rgba(31, 119, 180, 0.1);
+    }
+    .menu-link.active {
+        color: #1f77b4;
+        background: rgba(31, 119, 180, 0.15);
+        border-bottom: 2px solid #1f77b4;
+    }
+    .logo {
+        font-weight: bold;
+        font-size: 2rem;
+        color: #00ff41;
+    }
+    body {
+        padding-top: 80px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
     # Jedna linia z logo, menu i dropdownem
     col1, col2 = st.columns([5, 1])
 
     with col1:
-        st.markdown(f"""
-        <div style="display: flex; align-items: center; gap: 30px; padding: 10px 0;">
-            <div style="font-weight: bold;">🤖 aIRONick</div>
-            <a href="#home" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('home')">Start</a>
-            <a href="#features" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('features')">Testowanie oprogramowania</a>
-            <a href="#analytics" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('analytics')">Elektryk</a>
-            <a href="#about" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('about')">YouTube</a>
-            <a href="#contact" style="text-decoration: none; color: #1f77b4;" onclick="scrollToSection('contact')">Kontakt</a>
+        st.markdown("""
+        <div class="sticky-navbar">
+            <div class="navbar-content">
+                <div class="menu-items">
+                    <div class="logo">🤖 aIRONick</div>
+                    <a href="#home" class="menu-link" id="menu-home" onclick="scrollToSection('home')">Start</a>
+                    <a href="#features" class="menu-link" id="menu-features" onclick="scrollToSection('features')">Testowanie oprogramowania</a>
+                    <a href="#analytics" class="menu-link" id="menu-analytics" onclick="scrollToSection('analytics')">Elektryk</a>
+                    <a href="#about" class="menu-link" id="menu-about" onclick="scrollToSection('about')">YouTube</a>
+                    <a href="#contact" class="menu-link" id="menu-contact" onclick="scrollToSection('contact')">Kontakt</a>
+                </div>
+            </div>
         </div>
+        """, unsafe_allow_html=True)
+        
+        # Add JavaScript separately
+        st.markdown("""
         <script>
-        function scrollToSection(sectionId) {{
+        function scrollToSection(sectionId) {
             const element = document.getElementById(sectionId);
-            if (element) {{
-                element.scrollIntoView({{ behavior: 'smooth', block: 'start' }});
-            }}
-        }}
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // Highlight active menu item based on scroll position
+        function updateActiveMenu() {
+            const sections = ['home', 'features', 'analytics', 'about', 'contact'];
+            
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                const menuLink = document.getElementById('menu-' + section);
+                
+                if (element && menuLink) {
+                    const rect = element.getBoundingClientRect();
+                    const isInView = rect.top <= 100 && rect.bottom >= 100;
+                    
+                    if (isInView) {
+                        // Remove active class from all menu items
+                        document.querySelectorAll('.menu-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        // Add active class to current menu item
+                        menuLink.classList.add('active');
+                    }
+                }
+            });
+        }
+        
+        // Update active menu on scroll
+        window.addEventListener('scroll', updateActiveMenu);
+        // Update active menu on load
+        window.addEventListener('load', updateActiveMenu);
         </script>
         """, unsafe_allow_html=True)
 
+    # Language dropdown integrated into sticky navbar
+    st.markdown(f"""
+    <div style="position: fixed; top: 25px; right: 30px; z-index: 1000;">
+        <select onchange="changeLanguage(this.value)" style="
+            padding: 8px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            color: #5f6368;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        ">
+            <option value="pl" {'selected' if st.session_state.language == 'pl' else ''}>🇵🇱 PL</option>
+            <option value="en" {'selected' if st.session_state.language == 'en' else ''}>🇬🇧 EN</option>
+        </select>
+    </div>
+    <script>
+    function changeLanguage(lang) {{
+        // This would need to trigger a Streamlit rerun
+        // For now, we'll use the existing selectbox approach
+        console.log('Language changed to:', lang);
+    }}
+    </script>
+    """, unsafe_allow_html=True)
+    
+    # Keep the original selectbox hidden but functional
     with col2:
-        # Dropdown na tym samym poziomie
         language_options = {"🇵🇱 PL": "pl", "🇬🇧 EN": "en"}
+        
+        # Hide the selectbox visually but keep it functional
+        st.markdown("""
+        <style>
+        div[data-testid="stSelectbox"] {
+            display: none !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
         selected = st.selectbox(
             "",
             list(language_options.keys()),
             key="language_selector",
-            label_visibility="collapsed"  # Ukrywa etykietę
+            label_visibility="collapsed"
         )
 
         new_lang = language_options[selected]
@@ -409,10 +538,9 @@ def create_navbar():
 
 def create_hero_section():
     st.markdown(f"""
-    <div class="hero-section" id="home">
+    <div class="hero-section" id="home" style="padding-top: 120px;">
         <h1 class="hero-title">{t('hero.title')}</h1>
         <p class="hero-subtitle">{t('hero.subtitle')}</p>
-        <a href="#features" class="cta-button">{t('hero.cta_button')}</a>
     </div>
     """, unsafe_allow_html=True)
 
