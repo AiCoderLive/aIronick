@@ -716,8 +716,8 @@ def create_contact_section():
         st.markdown(f"""
         <div class="card">
             <h3>{t('contact.get_in_touch')}</h3>
-            <p>📧 {t('contact.email')}: services@aironick.com</p>
-            <p>📱 {t('contact.phone')}: +1 (555) TEST-123</p>
+            <p>📧 {t('contact.email')}: kontakt@aironick.com</p>
+            <p>📱 {t('contact.phone')}: +48 730 379 623</p>
             <p>🌐 {t('contact.website')}: www.aironick.com</p>
             <p>📍 {t('contact.service_area')}: {t('contact.service_area_value')}</p>
             <p>⏰ {t('contact.hours')}: {t('contact.hours_value')}</p>
