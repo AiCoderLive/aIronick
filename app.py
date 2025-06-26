@@ -400,7 +400,7 @@ def create_navbar():
         text-decoration: none;
         color: #5f6368;
         font-weight: 400;
-        font-size: 1.8rem;
+        font-size: 1.2rem;
         transition: all 0.3s ease;
         padding: 8px 16px;
         border-radius: 8px;
