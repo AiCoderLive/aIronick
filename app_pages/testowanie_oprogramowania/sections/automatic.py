@@ -1,42 +1,38 @@
 import streamlit as st
 
+
 def create_automatic_testing_section():
-    """Create automatic testing section"""
-    st.markdown("""
-    <div class="section">
-        <h2>🤖 Testowanie Automatyczne</h2>
-        <p>Automatyzacja testów to klucz do efektywnego rozwoju oprogramowania. Oferujemy kompleksowe rozwiązania automatyzacji, które przyspieszają proces testowania i zwiększają pokrycie testami.</p>
-        
-        <h3>🔧 Nasze Usługi Automatyzacji</h3>
-        <ul class="feature-list">
-            <li><strong>Testy jednostkowe (Unit Tests):</strong> Testowanie pojedynczych komponentów aplikacji</li>
-            <li><strong>Testy integracyjne:</strong> Weryfikacja współpracy między modułami</li>
-            <li><strong>Testy end-to-end:</strong> Kompleksowe scenariusze użytkowania</li>
-            <li><strong>Testy API:</strong> Automatyzacja testów interfejsów REST/GraphQL</li>
-            <li><strong>Testy regresyjne:</strong> Ciągła weryfikacja stabilności aplikacji</li>
-            <li><strong>Testy smoke:</strong> Szybka weryfikacja kluczowych funkcjonalności</li>
-        </ul>
-        
-        <h3>🛠️ Technologie i Narzędzia</h3>
-        <ul class="feature-list">
-            <li><strong>Selenium WebDriver:</strong> Automatyzacja przeglądarek internetowych</li>
-            <li><strong>Cypress:</strong> Nowoczesne testy front-endowe</li>
-            <li><strong>Playwright:</strong> Cross-browser testing</li>
-            <li><strong>Jest/Mocha:</strong> Frameworki do testów JavaScript</li>
-            <li><strong>PyTest:</strong> Testy w języku Python</li>
-            <li><strong>TestNG/JUnit:</strong> Testy w ekosystemie Java</li>
-            <li><strong>Postman/Newman:</strong> Automatyzacja testów API</li>
-            <li><strong>Docker:</strong> Konteneryzacja środowisk testowych</li>
-        </ul>
-        
-        <h3>📈 Korzyści z Automatyzacji</h3>
-        <p>Automatyzacja testów pozwala na:</p>
-        <ul class="feature-list">
-            <li><strong>Szybsze wykrywanie błędów:</strong> Natychmiastowe informowanie o problemach</li>
-            <li><strong>Redukcja kosztów:</strong> Mniejsze nakłady na ręczne testowanie</li>
-            <li><strong>Lepsza jakość:</strong> Consistentne i powtarzalne testy</li>
-            <li><strong>Ciągła integracja:</strong> Integracja z pipeline'ami CI/CD</li>
-            <li><strong>Większe pokrycie:</strong> Możliwość testowania więcej scenariuszy</li>
-        </ul>
-    </div>
-    """, unsafe_allow_html=True)
+    st.header("🤖 Testowanie Automatyczne")
+
+    st.write(
+        "Automatyzacja testów to klucz do efektywnego rozwoju oprogramowania. Oferujemy kompleksowe rozwiązania automatyzacji, które przyspieszają proces testowania i zwiększają pokrycie testami.")
+
+    st.subheader("🔧 Nasze Usługi Automatyzacji")
+
+    st.write("**Testy jednostkowe (Unit Tests):** Testowanie pojedynczych komponentów aplikacji")
+    st.write("**Testy integracyjne:** Weryfikacja współpracy między modułami")
+    st.write("**Testy end-to-end:** Kompleksowe scenariusze użytkowania")
+    st.write("**Testy API:** Automatyzacja testów interfejsów REST/GraphQL")
+    st.write("**Testy regresyjne:** Ciągła weryfikacja stabilności aplikacji")
+    st.write("**Testy smoke:** Szybka weryfikacja kluczowych funkcjonalności")
+
+    st.subheader("🛠️ Technologie i Narzędzia")
+
+    st.write("**Selenium WebDriver:** Automatyzacja przeglądarek internetowych")
+    st.write("**Cypress:** Nowoczesne testy front-endowe")
+    st.write("**Playwright:** Cross-browser testing")
+    st.write("**Jest/Mocha:** Frameworki do testów JavaScript")
+    st.write("**PyTest:** Testy w języku Python")
+    st.write("**TestNG/JUnit:** Testy w ekosystemie Java")
+    st.write("**Postman/Newman:** Automatyzacja testów API")
+    st.write("**Docker:** Konteneryzacja środowisk testowych")
+
+    st.subheader("📈 Korzyści z Automatyzacji")
+
+    st.write("Automatyzacja testów pozwala na:")
+
+    st.write("**Szybsze wykrywanie błędów:** Natychmiastowe informowanie o problemach")
+    st.write("**Redukcja kosztów:** Mniejsze nakłady na ręczne testowanie")
+    st.write("**Lepsza jakość:** Consistentne i powtarzalne testy")
+    st.write("**Ciągła integracja:** Integracja z pipeline'ami CI/CD")
+    st.write("**Większe pokrycie:** Możliwość testowania więcej scenariuszy")

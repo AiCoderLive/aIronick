@@ -153,5 +153,16 @@ def load_testing_page_css():
     .css-1d391kg {
         padding: 1rem !important;
     }
+
+    /* Ensure sidebar doesn't overlap with navbar */
+    [data-testid="stSidebar"] {
+        z-index: 998 !important;
+        top: 0 !important;
+        padding-top: 80px !important;
+    }
+
+    [data-testid="stSidebar"] > div {
+        padding-top: 80px !important;
+    }
     </style>
     """, unsafe_allow_html=True)

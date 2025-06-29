@@ -5,43 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5595cd3-bcd9-4369-bbcd-84f2325e813c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/about.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/analytics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/contact.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/features.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/footer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/hero.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/navbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/constants.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/page_config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/home.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/testowanie_oprogramowania/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/testowanie_oprogramowania/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/testowanie_oprogramowania/sections/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/testowanie_oprogramowania/sections/automatic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/testowanie_oprogramowania/sections/overview.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/testowanie_oprogramowania/sections/performance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/testowanie_oprogramowania/sidebar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/components.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/navbar.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/styles/testing_page.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/translations/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/translations/loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aIronick.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/automatic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/automatic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/overview.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/overview.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/performance.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/performance.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,15 +42,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/admin/Downloads/Repo/aIronick"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/admin/Downloads/Repo/aIronick&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
