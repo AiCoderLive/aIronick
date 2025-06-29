@@ -6,12 +6,14 @@ import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app import load_translations, get_translation, t, create_navbar
 
-st.set_page_config(
-    page_title="aIRONick - Testowanie Oprogramowania",
-    page_icon="🔧",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# Page config only set if not already configured
+if not hasattr(st, '_config'):
+    st.set_page_config(
+        page_title="aIRONick - Testowanie Oprogramowania",
+        page_icon="🔧",
+        layout="wide",
+        initial_sidebar_state="expanded"
+    )
 
 # Initialize language in session state
 if 'language' not in st.session_state:
