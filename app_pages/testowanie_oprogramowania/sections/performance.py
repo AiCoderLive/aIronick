@@ -19,12 +19,10 @@ def create_performance_testing_section():
 
     st.subheader("🛠️ Narzędzia i Technologie")
 
-    st.write("**JMeter:** Wszechstronne narzędzie do testów obciążenia")
-    st.write("**K6:** Nowoczesne testy wydajności JavaScript")
-    st.write("**Artillery:** Testy obciążenia API i aplikacji web")
-    st.write("**LoadRunner:** Zaawansowane testy enterprise")
     st.write("**Gatling:** Wysokowydajne testy obciążenia")
-    st.write("**New Relic/Datadog:** Monitoring aplikacji")
+    st.write("**JMeter:** Wszechstronne narzędzie do testów obciążenia")
+    st.write("**LoadRunner:** Zaawansowane testy enterprise")
+    st.write("**Dynatrace/Datadog/Elastic Search:** Monitoring aplikacji")
     st.write("**Grafana/Prometheus:** Wizualizacja metryk wydajności")
 
     st.subheader("📈 Kluczowe Metryki")
