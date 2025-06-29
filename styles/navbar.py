@@ -119,11 +119,71 @@ def load_navbar_css():
         background-clip: text;
         text-shadow: none;
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
     
     .logo:hover {
         transform: translateY(-1px);
         filter: brightness(1.1);
+    }
+    
+    .chip-icon {
+        width: 24px;
+        height: 24px;
+        position: relative;
+        display: inline-block;
+        background: linear-gradient(135deg, #1a73e8, #34a853);
+        border-radius: 4px;
+        box-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
+        animation: chip-pulse 3s ease-in-out infinite;
+    }
+    
+    .chip-icon::before {
+        content: '';
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        background: #0f1419;
+        border-radius: 2px;
+        border: 1px solid #34a853;
+    }
+    
+    .chip-icon::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background: linear-gradient(45deg, #ea4335, #fbbc04);
+        border-radius: 1px;
+        box-shadow: 
+            -4px -4px 0 -3px #1a73e8,
+            4px -4px 0 -3px #1a73e8,
+            -4px 4px 0 -3px #1a73e8,
+            4px 4px 0 -3px #1a73e8,
+            0 -6px 0 -4px #34a853,
+            0 6px 0 -4px #34a853,
+            -6px 0 0 -4px #34a853,
+            6px 0 0 -4px #34a853;
+    }
+    
+    @keyframes chip-pulse {
+        0%, 100% {
+            box-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
+            transform: scale(1);
+        }
+        50% {
+            box-shadow: 
+                0 0 12px rgba(26, 115, 232, 0.6),
+                0 0 20px rgba(52, 168, 83, 0.3);
+            transform: scale(1.05);
+        }
     }
 
     body {

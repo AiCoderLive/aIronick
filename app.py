@@ -20,7 +20,7 @@ def main():
         # For home page, don't initialize sidebar at all
         st.set_page_config(
             page_title="aIRONick",
-            page_icon="⚙️",
+            page_icon="💻",
             layout="wide"
         )
     

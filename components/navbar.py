@@ -44,7 +44,7 @@ def create_navbar():
     <div class="sticky-navbar">
         <div class="navbar-content">
             <div class="menu-items">
-                <div class="logo">⚙️ aIRONick</div>
+                <div class="logo"><span class="chip-icon"></span> aIRONick</div>
                 <a href="{home_link}" class="menu-link" id="menu-home" onclick="{home_onclick}">{t('navbar.home')}</a>
                 <a href="{features_link}" class="menu-link" id="menu-features" onclick="{features_onclick}">{t('navbar.software_testing')}</a>
                 <a href="{analytics_link}" class="menu-link" id="menu-analytics" onclick="{analytics_onclick}">{t('navbar.electrician')}</a>
