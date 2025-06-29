@@ -652,16 +652,40 @@ def create_navbar():
     """, unsafe_allow_html=True)
 
     # Main navbar with translated menu items
+    query_params = st.experimental_get_query_params()
+    current_page = query_params.get("page", [""])[0]
+    
+    # Determine navigation links based on current page
+    if current_page == "testowanie_oprogramowania":
+        home_link = "?"
+        features_link = "?"
+        analytics_link = "?"
+        about_link = "?"
+        contact_link = "?"
+    else:
+        home_link = "#home"
+        features_link = "#features"
+        analytics_link = "#analytics"
+        about_link = "#about"
+        contact_link = "#contact"
+    
+    # Create onclick handlers without backslashes in f-string
+    home_onclick = "scrollToSection('home')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    features_onclick = "scrollToSection('features')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    analytics_onclick = "scrollToSection('analytics')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    about_onclick = "scrollToSection('about')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    contact_onclick = "scrollToSection('contact')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    
     st.markdown(f"""
     <div class="sticky-navbar">
         <div class="navbar-content">
             <div class="menu-items">
                 <div class="logo">🤖 aIRONick</div>
-                <a href="#home" class="menu-link" id="menu-home" onclick="scrollToSection('home')">{t('navbar.home')}</a>
-                <a href="#features" class="menu-link" id="menu-features" onclick="scrollToSection('features')">{t('navbar.software_testing')}</a>
-                <a href="#analytics" class="menu-link" id="menu-analytics" onclick="scrollToSection('analytics')">{t('navbar.electrician')}</a>
-                <a href="#about" class="menu-link" id="menu-about" onclick="scrollToSection('about')">{t('navbar.youtube')}</a>
-                <a href="#contact" class="menu-link" id="menu-contact" onclick="scrollToSection('contact')">{t('navbar.contact')}</a>
+                <a href="{home_link}" class="menu-link" id="menu-home" onclick="{home_onclick}">{t('navbar.home')}</a>
+                <a href="{features_link}" class="menu-link" id="menu-features" onclick="{features_onclick}">{t('navbar.software_testing')}</a>
+                <a href="{analytics_link}" class="menu-link" id="menu-analytics" onclick="{analytics_onclick}">{t('navbar.electrician')}</a>
+                <a href="{about_link}" class="menu-link" id="menu-about" onclick="{about_onclick}">{t('navbar.youtube')}</a>
+                <a href="{contact_link}" class="menu-link" id="menu-contact" onclick="{contact_onclick}">{t('navbar.contact')}</a>
             </div>
         </div>
     </div>
@@ -812,37 +836,30 @@ def create_features_section():
         <div class="feature-grid">
     """, unsafe_allow_html=True)
 
-    col1, col2 = st.columns(2)
-
-    with col1:
-        st.markdown(f"""
-        <div class="card">
-            <h3>🔧 {t('features.software_testing.title')}</h3>
-            <p>{t('features.software_testing.description')}</p>
+    # Single comprehensive software testing section
+    st.markdown(f"""
+    <div class="card" style="max-width: 800px; margin: 0 auto; padding: 3rem;">
+        <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem;">🔧 {t('features.software_testing.title')}</h3>
+        <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 2rem;">{t('features.software_testing.description')}</p>
+        
+        <div style="text-align: center; margin-top: 2.5rem;">
+            <a href="?page=testowanie_oprogramowania" style="
+                background: var(--primary);
+                color: white;
+                padding: 1rem 2.5rem;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                display: inline-block;
+                box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+            ">
+                📋 Zobacz więcej
+            </a>
         </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <div class="card">
-            <h3>🎮 {t('features.gaming_solutions.title')}</h3>
-            <p>{t('features.gaming_solutions.description')}</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-    with col2:
-        st.markdown(f"""
-        <div class="card">
-            <h3>⚡ {t('features.hardware_testing.title')}</h3>
-            <p>{t('features.hardware_testing.description')}</p>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <div class="card">
-            <h3>🔌 {t('features.electrical_services.title')}</h3>
-            <p>{t('features.electrical_services.description')}</p>
-        </div>
-        """, unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("</div></div>", unsafe_allow_html=True)
 
@@ -1030,12 +1047,30 @@ def create_footer():
 def main():
     load_custom_css()
     create_navbar()
-    create_hero_section()
-    create_features_section()
-    create_analytics_section()
-    create_about_section()
-    create_contact_section()
-    create_footer()
+    
+    # Handle page routing
+    query_params = st.experimental_get_query_params()
+    page = query_params.get("page", [""])[0]
+    
+    if page == "testowanie_oprogramowania":
+        # Import and show the testowanie_oprogramowania page
+        import sys
+        import os
+        sys.path.append(os.path.join(os.path.dirname(__file__), 'pages'))
+        
+        try:
+            from testowanie_oprogramowania import show_testowanie_oprogramowania_page
+            show_testowanie_oprogramowania_page()
+        except ImportError:
+            st.error("Strona 'Testowanie oprogramowania' nie została znaleziona.")
+    else:
+        # Show main page content
+        create_hero_section()
+        create_features_section()
+        create_analytics_section()
+        create_about_section()
+        create_contact_section()
+        create_footer()
 
 
 if __name__ == "__main__":
