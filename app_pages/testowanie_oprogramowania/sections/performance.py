@@ -1,48 +1,48 @@
 import streamlit as st
+from translations.loader import t
 
 
 def create_performance_testing_section():
     """Create performance testing section"""
-    st.header("⚡ Testowanie Wydajnościowe")
+    st.header(t("software_testing.performance.title"))
 
-    st.write(
-        "Wydajność aplikacji to kluczowy czynnik sukcesu. Przeprowadzamy kompleksowe testy wydajnościowe, które pozwalają zoptymalizować działanie Twojej aplikacji pod różnymi obciążeniami.")
+    st.write(t("software_testing.performance.description"))
 
-    st.subheader("📊 Rodzaje Testów Wydajnościowych")
+    st.subheader(t("software_testing.performance.types_title"))
 
-    st.write("**Load Testing:** Testowanie pod normalnym obciążeniem użytkowników")
-    st.write("**Stress Testing:** Testowanie pod ekstremalnym obciążeniem")
-    st.write("**Spike Testing:** Testowanie nagłych wzrostów ruchu")
-    st.write("**Volume Testing:** Testowanie z dużymi ilościami danych")
-    st.write("**Endurance Testing:** Długotrwałe testy stabilności")
-    st.write("**Scalability Testing:** Testowanie skalowalności systemu")
+    st.write(t("software_testing.performance.load_testing"))
+    st.write(t("software_testing.performance.stress_testing"))
+    st.write(t("software_testing.performance.spike_testing"))
+    st.write(t("software_testing.performance.volume_testing"))
+    st.write(t("software_testing.performance.endurance_testing"))
+    st.write(t("software_testing.performance.scalability_testing"))
 
-    st.subheader("🛠️ Narzędzia i Technologie")
+    st.subheader(t("software_testing.performance.tools_title"))
 
-    st.write("**Gatling:** Wysokowydajne testy obciążenia")
-    st.write("**JMeter:** Wszechstronne narzędzie do testów obciążenia")
-    st.write("**LoadRunner:** Zaawansowane testy enterprise")
-    st.write("**Dynatrace/Datadog/Elastic Search:** Monitoring aplikacji")
-    st.write("**Grafana/Prometheus:** Wizualizacja metryk wydajności")
+    st.write(t("software_testing.performance.gatling"))
+    st.write(t("software_testing.performance.jmeter"))
+    st.write(t("software_testing.performance.loadrunner"))
+    st.write(t("software_testing.performance.monitoring"))
+    st.write(t("software_testing.performance.visualization"))
 
-    st.subheader("📈 Kluczowe Metryki")
+    st.subheader(t("software_testing.performance.metrics_title"))
 
-    st.write("Podczas testów wydajnościowych analizujemy:")
+    st.write(t("software_testing.performance.metrics_intro"))
 
-    st.write("**Response Time:** Czas odpowiedzi aplikacji")
-    st.write("**Throughput:** Liczba transakcji na sekundę")
-    st.write("**Concurrent Users:** Liczba jednoczesnych użytkowników")
-    st.write("**Error Rate:** Procent błędnych odpowiedzi")
-    st.write("**Resource Utilization:** Wykorzystanie CPU, RAM, dysku")
-    st.write("**Database Performance:** Wydajność bazy danych")
+    st.write(t("software_testing.performance.response_time"))
+    st.write(t("software_testing.performance.throughput"))
+    st.write(t("software_testing.performance.concurrent_users"))
+    st.write(t("software_testing.performance.error_rate"))
+    st.write(t("software_testing.performance.resource_utilization"))
+    st.write(t("software_testing.performance.database_performance"))
 
-    st.subheader("🎯 Proces Testowania")
+    st.subheader(t("software_testing.performance.process_title"))
 
-    st.write("Nasz proces obejmuje:")
+    st.write(t("software_testing.performance.process_intro"))
 
-    st.write("**Analiza wymagań:** Określenie celów wydajnościowych")
-    st.write("**Planowanie testów:** Przygotowanie scenariuszy testowych")
-    st.write("**Przygotowanie środowiska:** Konfiguracja narzędzi testowych")
-    st.write("**Wykonanie testów:** Przeprowadzenie testów obciążenia")
-    st.write("**Analiza wyników:** Szczegółowa analiza metryk")
-    st.write("**Rekomendacje:** Propozycje optymalizacji")
+    st.write(t("software_testing.performance.requirements_analysis"))
+    st.write(t("software_testing.performance.test_planning"))
+    st.write(t("software_testing.performance.environment_preparation"))
+    st.write(t("software_testing.performance.test_execution"))
+    st.write(t("software_testing.performance.results_analysis"))
+    st.write(t("software_testing.performance.recommendations"))

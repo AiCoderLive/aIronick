@@ -1,35 +1,35 @@
 import streamlit as st
+from translations.loader import t
 
 
 def create_automatic_testing_section():
-    st.header("🤖 Testowanie Automatyczne")
+    st.header(t("software_testing.automatic.title"))
 
-    st.write(
-        "Automatyzacja testów to klucz do efektywnego rozwoju oprogramowania. Oferujemy kompleksowe rozwiązania automatyzacji, które przyspieszają proces testowania i zwiększają pokrycie testami.")
+    st.write(t("software_testing.automatic.description"))
 
-    st.subheader("🔧 Nasze Usługi Automatyzacji")
+    st.subheader(t("software_testing.automatic.services_title"))
 
-    st.write("**Testy integracyjne:** Weryfikacja współpracy między modułami")
-    st.write("**Testy end-to-end:** Kompleksowe scenariusze użytkowania")
-    st.write("**Testy API:** Automatyzacja testów interfejsów REST")
-    st.write("**Testy regresyjne:** Ciągła weryfikacja stabilności aplikacji")
-    st.write("**Testy smoke:** Szybka weryfikacja kluczowych funkcjonalności")
+    st.write(t("software_testing.automatic.integration_tests"))
+    st.write(t("software_testing.automatic.end_to_end_tests"))
+    st.write(t("software_testing.automatic.api_tests"))
+    st.write(t("software_testing.automatic.regression_tests"))
+    st.write(t("software_testing.automatic.smoke_tests"))
 
-    st.subheader("🛠️ Technologie i Narzędzia")
+    st.subheader(t("software_testing.automatic.technologies_title"))
 
-    st.write("**Selenium WebDriver:** Automatyzacja przeglądarek internetowych")
-    st.write("**Playwright:** Cross-browser testing")
-    st.write("**PyTest:** Testy w języku Python")
-    st.write("**TestNG/JUnit:** Testy w ekosystemie Java")
-    st.write("**Postman:** Automatyzacja testów API")
-    st.write("**Docker:** Konteneryzacja środowisk testowych")
+    st.write(t("software_testing.automatic.selenium"))
+    st.write(t("software_testing.automatic.playwright"))
+    st.write(t("software_testing.automatic.pytest"))
+    st.write(t("software_testing.automatic.testng_junit"))
+    st.write(t("software_testing.automatic.postman"))
+    st.write(t("software_testing.automatic.docker"))
 
-    st.subheader("📈 Korzyści z Automatyzacji")
+    st.subheader(t("software_testing.automatic.benefits_title"))
 
-    st.write("Automatyzacja testów pozwala na:")
+    st.write(t("software_testing.automatic.benefits_intro"))
 
-    st.write("**Szybsze wzgledem manualnego wykrywanie błędów:** Natychmiastowe informowanie o problemach")
-    st.write("**Redukcja kosztów:** Mniejsze nakłady na ręczne testowanie")
-    st.write("**Lepsza jakość:** Consistentne i powtarzalne testy")
-    st.write("**Ciągła integracja:** Integracja z pipeline'ami CI/CD")
-    st.write("**Największe pokrycie:** Możliwość testowania duzej scenariuszy")
+    st.write(t("software_testing.automatic.faster_detection"))
+    st.write(t("software_testing.automatic.cost_reduction"))
+    st.write(t("software_testing.automatic.better_quality"))
+    st.write(t("software_testing.automatic.continuous_integration"))
+    st.write(t("software_testing.automatic.maximum_coverage"))

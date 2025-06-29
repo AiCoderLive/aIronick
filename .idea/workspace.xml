@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5595cd3-bcd9-4369-bbcd-84f2325e813c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/automatic.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/automatic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/overview.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/overview.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/performance.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sections/performance.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sidebar.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/sidebar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/translations/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/translations/pl.json" beforeDir="false" afterPath="$PROJECT_DIR$/translations/pl.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

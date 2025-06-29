@@ -1,26 +1,24 @@
 import streamlit as st
+from translations.loader import t
 
 def create_overview_section():
-    def create_overview_section():
-        st.header("📋 Przegląd Usług Testowania Oprogramowania")
+    st.header(t("software_testing.overview.title"))
 
-        st.write(
-            "Oferujemy kompleksowe usługi testowania oprogramowania, które zapewniają najwyższą jakość Twoich aplikacji. Nasze doświadczenie obejmuje różnorodne technologie i platformy.")
+    st.write(t("software_testing.overview.description"))
 
-        st.subheader("🎯 Nasze Specjalizacje")
+    st.subheader(t("software_testing.overview.specializations_title"))
 
-        col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
 
-        with col1:
-            st.write("**Testowanie funkcjonalne:** Weryfikacja zgodności aplikacji z wymaganiami biznesowymi")
-            st.write("**Testowanie automatyczne:** Efektywne testy regresyjne i ciągła integracja")
-            st.write("**Testowanie wydajnościowe:** Analiza wydajności pod obciążeniem")
+    with col1:
+        st.write(t("software_testing.overview.functional_testing"))
+        st.write(t("software_testing.overview.automated_testing"))
+        st.write(t("software_testing.overview.performance_testing"))
 
-        with col2:
-            st.write("**Testowanie bezpieczeństwa:** Wykrywanie podatności i luk bezpieczeństwa")
-            st.write("**Testowanie mobilne:** Aplikacje iOS i Android")
-            st.write("**Testowanie API:** Weryfikacja interfejsów programistycznych")
+    with col2:
+        st.write(t("software_testing.overview.security_testing"))
+        st.write(t("software_testing.overview.mobile_testing"))
+        st.write(t("software_testing.overview.api_testing"))
 
-        st.subheader("💼 Dlaczego Warto Wybrać Nas?")
-        st.write(
-            "Posiadamy wieloletnie doświadczenie w branży IT, nowoczesne narzędzia oraz zespół certyfikowanych testerów. Każdy projekt traktujemy indywidualnie.")
+    st.subheader(t("software_testing.overview.why_choose_title"))
+    st.write(t("software_testing.overview.why_choose_description"))
