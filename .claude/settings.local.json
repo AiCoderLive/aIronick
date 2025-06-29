@@ -13,7 +13,13 @@
       "Bash(ls:*)",
       "Bash(find:*)",
       "Bash(docker-compose:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(pip3 install:*)",
+      "Bash(docker build:*)",
+      "Bash(rm:*)",
+      "Bash(git rm:*)"
     ],
     "deny": []
   }
