@@ -108,9 +108,22 @@ def load_navbar_css():
     }
 
     .logo {
-        font-weight: bold;
-        font-size: 2rem;
-        color: #00ff41;
+        font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 700;
+        font-size: 1.8rem;
+        color: #1a73e8;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #1a73e8 0%, #34a853 50%, #ea4335 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: none;
+        transition: all 0.3s ease;
+    }
+    
+    .logo:hover {
+        transform: translateY(-1px);
+        filter: brightness(1.1);
     }
 
     body {

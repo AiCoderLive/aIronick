@@ -4,7 +4,7 @@ def setup_page_config(sidebar_state="collapsed"):
     """Configure Streamlit page settings"""
     st.set_page_config(
         page_title="aIRONick",
-        page_icon="🤖",
+        page_icon="⚙️",
         layout="wide",
         initial_sidebar_state=sidebar_state
     )

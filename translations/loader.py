@@ -12,7 +12,7 @@ def load_translations():
         "navbar": {
             "home": "Strona główna",
             "software_testing": "Testowanie oprogramowania",
-            "electrician": "Elektryk",
+            "electrician": "Elektryka",
             "youtube": "YouTube",
             "contact": "Kontakt"
         },
