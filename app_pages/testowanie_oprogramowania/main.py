@@ -12,6 +12,10 @@ def show_testing_page():
     load_base_css()
     load_testing_page_css()
     
+    # Initialize session state for selected section
+    if 'selected_section' not in st.session_state:
+        st.session_state.selected_section = 'overview'
+    
     # Add top navigation menu
     create_navbar()
     

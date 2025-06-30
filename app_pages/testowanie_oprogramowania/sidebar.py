@@ -7,8 +7,6 @@ def create_testing_sidebar():
         st.markdown("### 🔧 Testowanie Oprogramowania")
         
         # Navigation menu
-        if 'selected_section' not in st.session_state:
-            st.session_state.selected_section = 'overview'
         
         menu_items = {
             'overview': '📋 Informacje ogolne' if st.session_state.language == 'pl' else '📋 Overview',
