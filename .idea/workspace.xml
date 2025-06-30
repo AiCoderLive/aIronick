@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5595cd3-bcd9-4369-bbcd-84f2325e813c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_pages/testowanie_oprogramowania/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/features.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/features.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/navbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/components/navbar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/page_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/config/page_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/navbar.py" beforeDir="false" afterPath="$PROJECT_DIR$/styles/navbar.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

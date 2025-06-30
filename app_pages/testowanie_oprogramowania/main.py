@@ -6,6 +6,7 @@ from .sidebar import create_testing_sidebar
 from .sections.overview import create_overview_section
 from .sections.automatic import create_automatic_testing_section
 from .sections.performance import create_performance_testing_section
+from utils.url_helper import URLHelper
 
 def show_testing_page():
     """Display the software testing page"""
@@ -25,7 +26,8 @@ def show_testing_page():
     st.markdown('<div style="padding-top: 100px;">', unsafe_allow_html=True)
     
     # Back button
-    st.markdown('<a href="?" class="back-button">← Powrót do strony głównej</a>', unsafe_allow_html=True)
+    home_url = URLHelper.get_home_url()
+    st.markdown(f'<a href="{home_url}" class="back-button">← Powrót do strony głównej</a>', unsafe_allow_html=True)
     
     # Page header
     st.markdown("""

@@ -2,6 +2,7 @@ import streamlit as st
 from config.constants import LANGUAGE_OPTIONS
 from translations.loader import t
 from styles.navbar import load_navbar_css
+from utils.url_helper import URLHelper
 
 def create_navbar():
     """Create and display the main navigation bar"""
@@ -10,22 +11,17 @@ def create_navbar():
 
     load_navbar_css()
 
-    # Get current page from query params
-    try:
-        query_params = st.query_params
-        current_page = query_params.get("page", "")
-    except AttributeError:
-        # Fallback for older Streamlit versions
-        query_params = st.experimental_get_query_params()
-        current_page = query_params.get("page", [""])[0]
+    # Get current page from query params using URLHelper
+    current_page = URLHelper.get_page_param()
     
     # Determine navigation links based on current page
+    home_url = URLHelper.get_home_url()
     if current_page == "testowanie_oprogramowania":
-        home_link = "?"
-        features_link = "?"
-        analytics_link = "?"
-        about_link = "?"
-        contact_link = "?"
+        home_link = home_url
+        features_link = home_url
+        analytics_link = home_url
+        about_link = home_url
+        contact_link = home_url
     else:
         home_link = "#home"
         features_link = "#features"
@@ -34,11 +30,11 @@ def create_navbar():
         contact_link = "#contact"
     
     # Create onclick handlers
-    home_onclick = "scrollToSection('home')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    features_onclick = "scrollToSection('features')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    analytics_onclick = "scrollToSection('analytics')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    about_onclick = "scrollToSection('about')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    contact_onclick = "scrollToSection('contact')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    home_onclick = "scrollToSection('home')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
+    features_onclick = "scrollToSection('features')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
+    analytics_onclick = "scrollToSection('analytics')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
+    about_onclick = "scrollToSection('about')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
+    contact_onclick = "scrollToSection('contact')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
     
     st.markdown(f"""
     <div class="sticky-navbar">

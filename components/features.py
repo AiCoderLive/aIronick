@@ -1,5 +1,6 @@
 import streamlit as st
 from translations.loader import t
+from utils.url_helper import URLHelper
 
 def create_features_section():
     """Create and display the features section"""
@@ -44,11 +45,6 @@ def create_features_section():
         """, unsafe_allow_html=True)
         
         if st.button("📋 Zobacz więcej", key="zobacz_wiecej_btn", help="Przejdź do strony testowania oprogramowania"):
-            try:
-                st.query_params["page"] = "testowanie_oprogramowania"
-            except AttributeError:
-                # Fallback for older Streamlit versions
-                st.experimental_set_query_params(page="testowanie_oprogramowania")
-            st.rerun()
+            URLHelper.navigate_to_page("testowanie_oprogramowania")
 
     st.markdown("</div></div>", unsafe_allow_html=True)

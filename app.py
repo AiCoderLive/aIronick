@@ -2,16 +2,11 @@ import streamlit as st
 from config.page_config import setup_page_config, initialize_language
 from app_pages.home import show_home_page
 from app_pages.testowanie_oprogramowania.main import show_testing_page
+from utils.url_helper import URLHelper
 
 def main():
     # Handle page routing first to determine sidebar state
-    try:
-        query_params = st.query_params
-        page = query_params.get("page", "")
-    except AttributeError:
-        # Fallback for older Streamlit versions
-        query_params = st.experimental_get_query_params()
-        page = query_params.get("page", [""])[0]
+    page = URLHelper.get_page_param()
     
     # Configure page based on current page
     if page == "testowanie_oprogramowania":
