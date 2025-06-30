@@ -25,10 +25,6 @@ def show_testing_page():
     # Main content wrapper with top padding
     st.markdown('<div style="padding-top: 100px;">', unsafe_allow_html=True)
     
-    # Back button
-    home_url = URLHelper.get_home_url()
-    st.markdown(f'<a href="{home_url}" class="back-button">← Powrót do strony głównej</a>', unsafe_allow_html=True)
-    
     # Page header
     st.markdown("""
     <div class="page-header">
