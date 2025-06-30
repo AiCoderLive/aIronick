@@ -7,12 +7,12 @@ def load_base_css():
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap');
     
-    /* Global sidebar hiding for home page - applied immediately */
+    /* Global container with responsive max-width */
     .main .block-container {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
-        max-width: none !important;
-        margin-left: 0 !important;
+        max-width: 1400px !important;
+        margin: 0 auto !important;
     }
 
     :root {
@@ -81,6 +81,7 @@ def load_base_css():
         box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
     }
 
+    /* Mobile styles */
     @media (max-width: 768px) {
         .hero-title {
             font-size: 2.5rem;
@@ -96,6 +97,56 @@ def load_base_css():
 
         .feature-grid {
             grid-template-columns: 1fr;
+        }
+        
+        .main .block-container {
+            max-width: none !important;
+            margin-left: 0 !important;
+        }
+    }
+
+    /* Large screen optimizations */
+    @media (min-width: 1200px) {
+        .hero-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 2rem 6rem 2rem;
+        }
+
+        .section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            max-width: 800px;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            max-width: 700px;
+        }
+    }
+
+    /* Ultra-wide screen optimizations */
+    @media (min-width: 1600px) {
+        .hero-section {
+            padding: 10rem 3rem 8rem 3rem;
+        }
+        
+        .section {
+            padding: 5rem 3rem;
+        }
+        
+        .feature-grid {
+            grid-template-columns: repeat(3, minmax(320px, 400px));
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1300px;
+            margin: 3rem auto;
         }
     }
     </style>

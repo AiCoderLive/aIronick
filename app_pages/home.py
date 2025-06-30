@@ -19,14 +19,6 @@ def show_home_page():
     section[data-testid="stSidebar"] {
         display: none !important;
     }
-    
-    /* Ensure full width for main content */
-    .main .block-container {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        max-width: none !important;
-        margin-left: 0 !important;
-    }
     </style>
     """, unsafe_allow_html=True)
     

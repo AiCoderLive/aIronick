@@ -29,12 +29,19 @@ def create_navbar():
         about_link = "#about"
         contact_link = "#contact"
     
-    # Create onclick handlers
-    home_onclick = "scrollToSection('home')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
-    features_onclick = "scrollToSection('features')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
-    analytics_onclick = "scrollToSection('analytics')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
-    about_onclick = "scrollToSection('about')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
-    contact_onclick = "scrollToSection('contact')" if current_page != 'testowanie_oprogramowania' else f"window.location.href='{home_url}'"
+    # Create onclick handlers - prevent default link behavior and use JavaScript navigation
+    if current_page != 'testowanie_oprogramowania':
+        home_onclick = "event.preventDefault(); scrollToSection('home'); return false;"
+        features_onclick = "event.preventDefault(); scrollToSection('features'); return false;"
+        analytics_onclick = "event.preventDefault(); scrollToSection('analytics'); return false;"
+        about_onclick = "event.preventDefault(); scrollToSection('about'); return false;"
+        contact_onclick = "event.preventDefault(); scrollToSection('contact'); return false;"
+    else:
+        home_onclick = f"window.location.href='{home_url}'"
+        features_onclick = f"window.location.href='{home_url}'"
+        analytics_onclick = f"window.location.href='{home_url}'"
+        about_onclick = f"window.location.href='{home_url}'"
+        contact_onclick = f"window.location.href='{home_url}'"
     
     st.markdown(f"""
     <div class="sticky-navbar">
@@ -51,44 +58,86 @@ def create_navbar():
     </div>
     """, unsafe_allow_html=True)
 
-    # Add JavaScript separately
+    # Add JavaScript with proper timing and error handling
     st.markdown("""
     <script>
-    function scrollToSection(sectionId) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    }
-
-    // Highlight active menu item based on scroll position
-    function updateActiveMenu() {
-        const sections = ['home', 'features', 'analytics', 'about', 'contact'];
-
-        sections.forEach(section => {
-            const element = document.getElementById(section);
-            const menuLink = document.getElementById('menu-' + section);
-
-            if (element && menuLink) {
-                const rect = element.getBoundingClientRect();
-                const isInView = rect.top <= 100 && rect.bottom >= 100;
-
-                if (isInView) {
-                    // Remove active class from all menu items
-                    document.querySelectorAll('.menu-link').forEach(link => {
-                        link.classList.remove('active');
+    // Wait for DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeNavbar();
+    });
+    
+    // Also try after a short delay to ensure Streamlit components are ready
+    setTimeout(initializeNavbar, 500);
+    
+    function initializeNavbar() {
+        // Define scroll function with error handling
+        window.scrollToSection = function(sectionId) {
+            setTimeout(function() {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start',
+                        inline: 'nearest'
                     });
-                    // Add active class to current menu item
-                    menuLink.classList.add('active');
+                } else {
+                    console.warn('Section not found:', sectionId);
+                    // Fallback: try to scroll to approximate position
+                    const fallbackPositions = {
+                        'home': 0,
+                        'features': 800,
+                        'analytics': 1600,
+                        'about': 2400,
+                        'contact': 3200
+                    };
+                    if (fallbackPositions[sectionId]) {
+                        window.scrollTo({
+                            top: fallbackPositions[sectionId],
+                            behavior: 'smooth'
+                        });
+                    }
                 }
-            }
-        });
-    }
+            }, 100);
+        };
 
-    // Update active menu on scroll
-    window.addEventListener('scroll', updateActiveMenu);
-    // Update active menu on load
-    window.addEventListener('load', updateActiveMenu);
+        // Highlight active menu item based on scroll position
+        function updateActiveMenu() {
+            const sections = ['home', 'features', 'analytics', 'about', 'contact'];
+            let activeFound = false;
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                const menuLink = document.getElementById('menu-' + section);
+
+                if (element && menuLink && !activeFound) {
+                    const rect = element.getBoundingClientRect();
+                    const isInView = rect.top <= 150 && rect.bottom >= 100;
+
+                    if (isInView) {
+                        // Remove active class from all menu items
+                        document.querySelectorAll('.menu-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        // Add active class to current menu item
+                        menuLink.classList.add('active');
+                        activeFound = true;
+                    }
+                }
+            });
+        }
+
+        // Update active menu on scroll with throttling
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(updateActiveMenu, 50);
+        });
+        
+        // Initial update
+        updateActiveMenu();
+    }
     </script>
     """, unsafe_allow_html=True)
 
