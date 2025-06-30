@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 from config.constants import LANGUAGE_OPTIONS
 from translations.loader import t
 from styles.navbar import load_navbar_css
@@ -31,11 +32,11 @@ def create_navbar():
     
     # Create onclick handlers - prevent default link behavior and use JavaScript navigation
     if current_page != 'testowanie_oprogramowania':
-        home_onclick = "event.preventDefault(); scrollToSection('home'); return false;"
-        features_onclick = "event.preventDefault(); scrollToSection('features'); return false;"
-        analytics_onclick = "event.preventDefault(); scrollToSection('analytics'); return false;"
-        about_onclick = "event.preventDefault(); scrollToSection('about'); return false;"
-        contact_onclick = "event.preventDefault(); scrollToSection('contact'); return false;"
+        home_onclick = "event.preventDefault(); console.log('Home clicked'); window.aIronickScrollToSection && window.aIronickScrollToSection('home'); return false;"
+        features_onclick = "event.preventDefault(); console.log('Features clicked'); window.aIronickScrollToSection && window.aIronickScrollToSection('features'); return false;"
+        analytics_onclick = "event.preventDefault(); console.log('Analytics clicked'); window.aIronickScrollToSection && window.aIronickScrollToSection('analytics'); return false;"
+        about_onclick = "event.preventDefault(); console.log('About clicked'); window.aIronickScrollToSection && window.aIronickScrollToSection('about'); return false;"
+        contact_onclick = "event.preventDefault(); console.log('Contact clicked'); window.aIronickScrollToSection && window.aIronickScrollToSection('contact'); return false;"
     else:
         home_onclick = f"window.location.href='{home_url}'"
         features_onclick = f"window.location.href='{home_url}'"
@@ -58,88 +59,112 @@ def create_navbar():
     </div>
     """, unsafe_allow_html=True)
 
-    # Add JavaScript with proper timing and error handling
-    st.markdown("""
+    # Use st.components.v1.html for better JavaScript execution
+    import streamlit.components.v1 as components
+    
+    components.html("""
     <script>
-    // Wait for DOM to be fully loaded
-    document.addEventListener('DOMContentLoaded', function() {
-        initializeNavbar();
-    });
-    
-    // Also try after a short delay to ensure Streamlit components are ready
-    setTimeout(initializeNavbar, 500);
-    
-    function initializeNavbar() {
-        // Define scroll function with error handling
-        window.scrollToSection = function(sectionId) {
-            setTimeout(function() {
-                const element = document.getElementById(sectionId);
-                if (element) {
-                    element.scrollIntoView({ 
-                        behavior: 'smooth', 
-                        block: 'start',
-                        inline: 'nearest'
+    // Global function to handle navbar scrolling with multiple retry attempts
+    window.aIronickScrollToSection = function(sectionId) {
+        console.log('Attempting to scroll to section:', sectionId);
+        
+        function attemptScroll(retries = 5) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                console.log('Found element, scrolling to:', sectionId);
+                element.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start',
+                    inline: 'nearest'
+                });
+                return true;
+            } else if (retries > 0) {
+                console.log('Element not found, retrying in 200ms. Retries left:', retries);
+                setTimeout(() => attemptScroll(retries - 1), 200);
+            } else {
+                console.warn('Section not found after all retries:', sectionId);
+                // Fallback: scroll to approximate position
+                const fallbackPositions = {
+                    'home': 0,
+                    'features': 800,
+                    'analytics': 1600,
+                    'about': 2400,
+                    'contact': 3200
+                };
+                if (fallbackPositions[sectionId]) {
+                    console.log('Using fallback position for:', sectionId);
+                    window.scrollTo({
+                        top: fallbackPositions[sectionId],
+                        behavior: 'smooth'
                     });
-                } else {
-                    console.warn('Section not found:', sectionId);
-                    // Fallback: try to scroll to approximate position
-                    const fallbackPositions = {
-                        'home': 0,
-                        'features': 800,
-                        'analytics': 1600,
-                        'about': 2400,
-                        'contact': 3200
-                    };
-                    if (fallbackPositions[sectionId]) {
-                        window.scrollTo({
-                            top: fallbackPositions[sectionId],
-                            behavior: 'smooth'
-                        });
-                    }
                 }
-            }, 100);
-        };
-
-        // Highlight active menu item based on scroll position
-        function updateActiveMenu() {
-            const sections = ['home', 'features', 'analytics', 'about', 'contact'];
-            let activeFound = false;
-
-            sections.forEach(section => {
-                const element = document.getElementById(section);
-                const menuLink = document.getElementById('menu-' + section);
-
-                if (element && menuLink && !activeFound) {
-                    const rect = element.getBoundingClientRect();
-                    const isInView = rect.top <= 150 && rect.bottom >= 100;
-
-                    if (isInView) {
-                        // Remove active class from all menu items
-                        document.querySelectorAll('.menu-link').forEach(link => {
-                            link.classList.remove('active');
-                        });
-                        // Add active class to current menu item
-                        menuLink.classList.add('active');
-                        activeFound = true;
-                    }
-                }
-            });
+            }
         }
+        
+        // Start the attempt immediately
+        attemptScroll();
+    };
 
-        // Update active menu on scroll with throttling
+    // Function to update active menu highlighting
+    window.aIronickUpdateActiveMenu = function() {
+        const sections = ['home', 'features', 'analytics', 'about', 'contact'];
+        let activeFound = false;
+
+        sections.forEach(section => {
+            const element = document.getElementById(section);
+            const menuLink = document.getElementById('menu-' + section);
+
+            if (element && menuLink && !activeFound) {
+                const rect = element.getBoundingClientRect();
+                const isInView = rect.top <= 150 && rect.bottom >= 100;
+
+                if (isInView) {
+                    // Remove active class from all menu items
+                    document.querySelectorAll('.menu-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    // Add active class to current menu item
+                    menuLink.classList.add('active');
+                    activeFound = true;
+                }
+            }
+        });
+    };
+
+    // Initialize navbar with multiple initialization attempts
+    function initializeAIronickNavbar() {
+        console.log('Initializing aIronick navbar...');
+        
+        // Set up scroll event listener with throttling
         let scrollTimeout;
         window.addEventListener('scroll', function() {
             if (scrollTimeout) {
                 clearTimeout(scrollTimeout);
             }
-            scrollTimeout = setTimeout(updateActiveMenu, 50);
+            scrollTimeout = setTimeout(window.aIronickUpdateActiveMenu, 50);
         });
         
         // Initial update
-        updateActiveMenu();
+        setTimeout(window.aIronickUpdateActiveMenu, 100);
+        
+        console.log('aIronick navbar initialized successfully');
     }
+
+    // Multiple initialization strategies
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeAIronickNavbar);
+    } else {
+        initializeAIronickNavbar();
+    }
+    
+    // Also initialize after delays to handle Streamlit's rendering
+    setTimeout(initializeAIronickNavbar, 500);
+    setTimeout(initializeAIronickNavbar, 1000);
+    setTimeout(initializeAIronickNavbar, 2000);
+    
+    console.log('aIronick navbar script loaded');
     </script>
-    """, unsafe_allow_html=True)
+    """, height=0)
 
     # Language dropdown integrated into navbar
     col1, col2, col3, col4 = st.columns([3, 1, 1, 1])
