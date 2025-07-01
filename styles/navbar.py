@@ -9,7 +9,7 @@ def load_navbar_css():
         top: 0;
         left: 0;
         right: 0;
-        z-index: 999;
+        z-index: 1001;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid var(--border);
@@ -64,12 +64,81 @@ def load_navbar_css():
         top: 0;
         left: 0;
         right: 0;
-        z-index: 999;
+        z-index: 1001;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
         border-bottom: 1px solid #dadce0;
         padding: 15px 30px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .aironick-navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(15px);
+        border-bottom: 1px solid #e0e0e0;
+        padding: 12px 0;
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    
+    .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+    }
+    
+    .navbar-logo {
+        font-size: 24px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #1a73e8 0%, #34a853 50%, #ea4335 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+    }
+    
+    .navbar-menu {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .navbar-link {
+        display: inline-block;
+        padding: 12px 20px;
+        text-decoration: none;
+        color: #5f6368;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        position: relative;
+        cursor: pointer;
+    }
+    
+    .navbar-link:hover {
+        color: #1a73e8;
+        background: rgba(26, 115, 232, 0.08);
+        transform: translateY(-1px);
+    }
+    
+    .navbar-link:active {
+        transform: translateY(0);
     }
 
     .navbar-content {

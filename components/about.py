@@ -5,7 +5,7 @@ from config.constants import CONTACT_INFO
 def create_about_section():
     """Create and display the about/YouTube section"""
     st.markdown(f"""
-    <div class="section" id="about">
+    <div class="section" id="about" style="padding-top: 100px;">
         <h2 class="section-title">{t('youtube.title')}</h2>
     """, unsafe_allow_html=True)
 

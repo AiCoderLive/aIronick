@@ -4,7 +4,7 @@ from translations.loader import t
 def create_analytics_section():
     """Create and display the analytics/electrician section"""
     st.markdown(f"""
-    <div class="section" id="analytics">
+    <div class="section" id="analytics" style="padding-top: 100px;">
         <h2 class="section-title">{t('electrician.title')}</h2>
         <div class="feature-grid">
     """, unsafe_allow_html=True)

@@ -5,7 +5,7 @@ from utils.url_helper import URLHelper
 def create_features_section():
     """Create and display the features section"""
     st.markdown(f"""
-    <div class="section" id="features">
+    <div class="section" id="features" style="padding-top: 100px;">
         <h2 class="section-title">{t('features.title')}</h2>
         <div class="feature-grid">
     """, unsafe_allow_html=True)

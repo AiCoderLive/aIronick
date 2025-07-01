@@ -5,7 +5,7 @@ from config.constants import CONTACT_INFO
 def create_contact_section():
     """Create and display the contact section"""
     st.markdown(f"""
-    <div class="section" id="contact">
+    <div class="section" id="contact" style="padding-top: 100px;">
         <h2 class="section-title">{t('contact.title')}</h2>
     """, unsafe_allow_html=True)
 

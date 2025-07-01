@@ -1,7 +1,6 @@
 import streamlit as st
 from config.constants import LANGUAGE_OPTIONS
 from translations.loader import t
-from styles.navbar import load_navbar_css
 from utils.url_helper import URLHelper
 
 def create_navbar():
@@ -9,42 +8,114 @@ def create_navbar():
     if 'language' not in st.session_state:
         st.session_state.language = 'pl'
 
-    load_navbar_css()
     current_page = URLHelper.get_page_param()
-    home_url = URLHelper.get_home_url()
     
-    # Simple navigation - if on testing page, go home; if on home, use anchors
-    if current_page == "testowanie_oprogramowania":
-        home_link = home_url
-        features_link = home_url  
-        analytics_link = home_url
-        about_link = home_url
-        contact_link = home_url
-    else:
-        home_link = "#home"
-        features_link = "#features"
-        analytics_link = "#analytics"
-        about_link = "#about" 
-        contact_link = "#contact"
-    
+    # SIMPLE navbar that ACTUALLY WORKS - no JavaScript bullshit
     st.markdown(f"""
-    <div class="sticky-navbar">
-        <div class="navbar-content">
-            <div class="menu-items">
-                <div class="logo"><span class="chip-icon"></span> aIRONick</div>
-                <a href="{home_link}" class="menu-link">{t('navbar.home')}</a>
-                <a href="{features_link}" class="menu-link">{t('navbar.software_testing')}</a>
-                <a href="{analytics_link}" class="menu-link">{t('navbar.electrician')}</a>
-                <a href="{about_link}" class="menu-link">{t('navbar.youtube')}</a>
-                <a href="{contact_link}" class="menu-link">{t('navbar.contact')}</a>
+    <style>
+    .working-navbar {{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid #e0e0e0;
+        padding: 15px 0;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }}
+    
+    .working-nav-container {{
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+    }}
+    
+    .working-nav-logo {{
+        font-size: 28px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #1a73e8 0%, #34a853 50%, #ea4335 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-decoration: none;
+    }}
+    
+    .working-nav-links {{
+        display: flex;
+        gap: 30px;
+        align-items: center;
+    }}
+    
+    .working-nav-link {{
+        color: #5f6368;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        padding: 10px 15px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }}
+    
+    .working-nav-link:hover {{
+        color: #1a73e8;
+        background: rgba(26, 115, 232, 0.1);
+        transform: translateY(-1px);
+    }}
+    
+    /* Add proper scroll offset for all sections */
+    #home, #features, #analytics, #about, #contact {{
+        scroll-margin-top: 80px;
+    }}
+    
+    body {{
+        padding-top: 80px;
+    }}
+    
+    @media (max-width: 768px) {{
+        .working-nav-links {{
+            gap: 15px;
+        }}
+        .working-nav-link {{
+            font-size: 14px;
+            padding: 8px 10px;
+        }}
+    }}
+    </style>
+    
+    <div class="working-navbar">
+        <div class="working-nav-container">
+            <a href="#home" class="working-nav-logo">🔧 aIRONick</a>
+            <div class="working-nav-links">
+                <a href="#home" class="working-nav-link">{t('navbar.home')}</a>
+                <a href="#features" class="working-nav-link">{t('navbar.software_testing')}</a>
+                <a href="#analytics" class="working-nav-link">{t('navbar.electrician')}</a>
+                <a href="#about" class="working-nav-link">{t('navbar.youtube')}</a>
+                <a href="#contact" class="working-nav-link">{t('navbar.contact')}</a>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # Language dropdown  
+    # Language selector
     col1, col2, col3, col4 = st.columns([3, 1, 1, 1])
     with col4:
+        st.markdown("""
+        <style>
+        div[data-testid="column"]:nth-child(4) {
+            position: fixed !important;
+            top: 20px !important;
+            right: 20px !important;
+            z-index: 10000 !important;
+            width: 100px !important;
+        }
+        </style>
+        """, unsafe_allow_html=True)
+        
         selected = st.selectbox(
             "",
             list(LANGUAGE_OPTIONS.keys()),
