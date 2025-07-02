@@ -5,11 +5,12 @@ def load_components_css():
     st.markdown("""
     <style>
     .hero-section {
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        background: var(--surface);
         color: var(--text-primary);
-        padding: 8rem 2rem 5rem 2rem;
+        padding: 8rem 2rem 6rem 2rem;
         text-align: center;
         margin-top: 0;
+        border-bottom: 1px solid var(--border-light);
     }
 
     .hero-title {
@@ -19,17 +20,18 @@ def load_components_css():
         margin-bottom: 1.5rem;
         color: var(--text-primary);
         line-height: 1.1;
+        letter-spacing: -0.025em;
     }
 
     .hero-subtitle {
         font-size: 1.25rem;
-        margin-bottom: 2rem;
+        margin-bottom: 2.5rem;
         color: var(--text-secondary);
         font-weight: 400;
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
-        line-height: 1.5;
+        line-height: 1.6;
     }
 
     .section {
@@ -39,36 +41,39 @@ def load_components_css():
     }
 
     .section:nth-child(even) {
-        background: var(--background);
+        background: var(--surface-alt);
     }
 
     .section-title {
+        font-family: 'Inter', sans-serif;
         font-size: 2.5rem;
         text-align: center;
         margin-bottom: 3rem;
         color: var(--text-primary);
         font-weight: 600;
         line-height: 1.2;
+        letter-spacing: -0.025em;
     }
 
     .card {
         background: var(--surface);
         border: 1px solid var(--border);
-        border-radius: 12px;
+        border-radius: 8px;
         padding: 2rem;
-        box-shadow: 0 2px 8px var(--shadow);
+        box-shadow: var(--shadow);
         margin-bottom: 1.5rem;
-        transition: all 0.2s ease;
+        transition: all 0.15s ease;
     }
 
     .card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 16px var(--shadow-hover);
-        border-color: var(--border-hover);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary);
     }
 
     .card h3 {
         color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
         font-weight: 600;
         font-size: 1.25rem;
         margin-bottom: 1rem;
@@ -78,14 +83,18 @@ def load_components_css():
     .card p {
         color: var(--text-secondary);
         line-height: 1.6;
-        font-size: 0.95rem;
+        font-size: 0.875rem;
+        font-weight: 400;
     }
 
     .feature-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 1.5rem;
         margin: 2rem 0;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .metric-card {
@@ -93,18 +102,20 @@ def load_components_css():
         color: var(--text-primary);
         padding: 2rem;
         border: 1px solid var(--border);
-        border-radius: 12px;
+        border-radius: 8px;
         text-align: center;
-        box-shadow: 0 2px 8px var(--shadow);
-        transition: all 0.2s ease;
+        box-shadow: var(--shadow);
+        transition: all 0.15s ease;
     }
 
     .metric-card:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 16px var(--shadow-hover);
+        box-shadow: var(--shadow-md);
+        border-color: var(--primary);
     }
 
     .metric-value {
+        font-family: 'Inter', sans-serif;
         font-size: 2.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
@@ -112,9 +123,11 @@ def load_components_css():
     }
 
     .metric-label {
-        font-size: 0.9rem;
+        font-size: 0.875rem;
         color: var(--text-secondary);
         font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
 
     .footer {

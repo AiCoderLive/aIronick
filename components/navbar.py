@@ -34,66 +34,56 @@ def create_navbar():
         about_link = "#about"
         contact_link = "#contact"
 
-    # Create onclick handlers
-    home_onclick = "scrollToSection('home')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    features_onclick = "scrollToSection('features')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    analytics_onclick = "scrollToSection('analytics')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    about_onclick = "scrollToSection('about')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
-    contact_onclick = "scrollToSection('contact')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    # Navigation will be handled by pure JavaScript event listeners
 
     st.markdown(f"""
     <div class="sticky-navbar">
         <div class="navbar-content">
             <div class="menu-items">
                 <div class="logo"><span class="chip-icon"></span> aIRONick</div>
-                <a href="{home_link}" class="menu-link" id="menu-home" onclick="{home_onclick}; return false;">{t('navbar.home')}</a>
-                <a href="{features_link}" class="menu-link" id="menu-features" onclick="{features_onclick}; return false;">{t('navbar.software_testing')}</a>
-                <a href="{analytics_link}" class="menu-link" id="menu-analytics" onclick="{analytics_onclick}; return false;">{t('navbar.electrician')}</a>
-                <a href="{about_link}" class="menu-link" id="menu-about" onclick="{about_onclick}; return false;">{t('navbar.youtube')}</a>
-                <a href="{contact_link}" class="menu-link" id="menu-contact" onclick="{contact_onclick}; return false;">{t('navbar.contact')}</a>
+                <a href="{home_link}" class="menu-link smooth-scroll" id="menu-home" data-section="home">{t('navbar.home')}</a>
+                <a href="{features_link}" class="menu-link smooth-scroll" id="menu-features" data-section="features">{t('navbar.software_testing')}</a>
+                <a href="{analytics_link}" class="menu-link smooth-scroll" id="menu-analytics" data-section="analytics">{t('navbar.electrician')}</a>
+                <a href="{about_link}" class="menu-link smooth-scroll" id="menu-about" data-section="about">{t('navbar.youtube')}</a>
+                <a href="{contact_link}" class="menu-link smooth-scroll" id="menu-contact" data-section="contact">{t('navbar.contact')}</a>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # Add JavaScript separately
+    # NAJPROSTSZE ROZWIĄZANIE - tylko CSS smooth scroll
     st.markdown("""
     <script>
-    function scrollToSection(sectionId) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Minimal working solution
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🚀 Simple navbar script loading...');
+        
+        // Simple scroll to section function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                return true;
+            }
+            return false;
         }
-    }
-
-    // Highlight active menu item based on scroll position
-    function updateActiveMenu() {
-        const sections = ['home', 'features', 'analytics', 'about', 'contact'];
-
-        sections.forEach(section => {
-            const element = document.getElementById(section);
-            const menuLink = document.getElementById('menu-' + section);
-
-            if (element && menuLink) {
-                const rect = element.getBoundingClientRect();
-                const isInView = rect.top <= 100 && rect.bottom >= 100;
-
-                if (isInView) {
-                    // Remove active class from all menu items
-                    document.querySelectorAll('.menu-link').forEach(link => {
-                        link.classList.remove('active');
-                    });
-                    // Add active class to current menu item
-                    menuLink.classList.add('active');
-                }
+        
+        // Add click handlers to all menu links
+        const menuLinks = document.querySelectorAll('.menu-link[data-section]');
+        menuLinks.forEach(function(link) {
+            const section = link.getAttribute('data-section');
+            if (section) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    scrollToSection(section);
+                });
             }
         });
-    }
-
-    // Update active menu on scroll
-    window.addEventListener('scroll', updateActiveMenu);
-    // Update active menu on load
-    window.addEventListener('load', updateActiveMenu);
+        
+        // Make globally available
+        window.scrollToSection = scrollToSection;
+        console.log('✅ Simple navbar ready!');
+    });
     </script>
     """, unsafe_allow_html=True)
 

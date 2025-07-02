@@ -67,9 +67,9 @@ def load_navbar_css():
         z-index: 1001;
         background: rgba(255, 255, 255, 0.95);
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid #dadce0;
-        padding: 15px 30px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border-bottom: 1px solid var(--border-light);
+        padding: 1rem 2rem;
+        box-shadow: var(--shadow);
     }
 
     .aironick-navbar {
@@ -156,69 +156,88 @@ def load_navbar_css():
     }
 
     .menu-link {
-        text-decoration: none;
-        color: #5f6368;
-        font-weight: 400;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        padding: 8px 16px;
-        border-radius: 8px;
+        text-decoration: none !important;
+        color: var(--text-secondary);
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+        font-size: 0.875rem;
+        transition: all 0.15s ease;
+        padding: 0.75rem 1.25rem;
+        border-radius: 6px;
+        display: inline-block;
+        background: transparent;
+        border: 1px solid transparent;
+        cursor: pointer;
+        position: relative;
+        white-space: nowrap;
+        user-select: none;
+    }
+
+    .menu-link:link,
+    .menu-link:visited,
+    .menu-link:hover,
+    .menu-link:active {
+        text-decoration: none !important;
+        outline: none;
     }
 
     .menu-link:hover {
-        color: #1f77b4;
-        background: rgba(31, 119, 180, 0.1);
+        color: var(--primary);
+        background: rgb(37 99 235 / 0.1);
+        border-color: rgb(37 99 235 / 0.2);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .menu-link.active {
-        color: #1f77b4;
-        background: rgba(31, 119, 180, 0.15);
-        border-bottom: 2px solid #1f77b4;
+        color: var(--primary);
+        background: rgb(37 99 235 / 0.15);
+        border-color: rgb(37 99 235 / 0.3);
+        font-weight: 600;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .menu-link:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 2px;
     }
 
     .logo {
-        font-family: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-family: 'Inter', sans-serif;
         font-weight: 700;
-        font-size: 1.8rem;
-        color: #1a73e8;
+        font-size: 1.5rem;
+        color: var(--text-primary);
         letter-spacing: -0.02em;
-        background: linear-gradient(135deg, #1a73e8 0%, #34a853 50%, #ea4335 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-shadow: none;
-        transition: all 0.3s ease;
+        transition: all 0.15s ease;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0.5rem;
     }
     
     .logo:hover {
-        transform: translateY(-1px);
-        filter: brightness(1.1);
+        color: var(--primary);
     }
     
     .chip-icon {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
         position: relative;
         display: inline-block;
-        background: linear-gradient(135deg, #1a73e8, #34a853);
+        background: var(--primary);
         border-radius: 4px;
-        box-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
-        animation: chip-pulse 3s ease-in-out infinite;
+        box-shadow: var(--shadow);
     }
     
     .chip-icon::before {
         content: '';
         position: absolute;
-        top: 4px;
-        left: 4px;
-        right: 4px;
-        bottom: 4px;
-        background: #0f1419;
+        top: 3px;
+        left: 3px;
+        right: 3px;
+        bottom: 3px;
+        background: var(--surface);
         border-radius: 2px;
-        border: 1px solid #34a853;
+        border: 1px solid var(--primary);
     }
     
     .chip-icon::after {
@@ -227,32 +246,10 @@ def load_navbar_css():
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 8px;
-        height: 8px;
-        background: linear-gradient(45deg, #ea4335, #fbbc04);
+        width: 6px;
+        height: 6px;
+        background: var(--primary);
         border-radius: 1px;
-        box-shadow: 
-            -4px -4px 0 -3px #1a73e8,
-            4px -4px 0 -3px #1a73e8,
-            -4px 4px 0 -3px #1a73e8,
-            4px 4px 0 -3px #1a73e8,
-            0 -6px 0 -4px #34a853,
-            0 6px 0 -4px #34a853,
-            -6px 0 0 -4px #34a853,
-            6px 0 0 -4px #34a853;
-    }
-    
-    @keyframes chip-pulse {
-        0%, 100% {
-            box-shadow: 0 0 8px rgba(26, 115, 232, 0.4);
-            transform: scale(1);
-        }
-        50% {
-            box-shadow: 
-                0 0 12px rgba(26, 115, 232, 0.6),
-                0 0 20px rgba(52, 168, 83, 0.3);
-            transform: scale(1.05);
-        }
     }
 
     body {
@@ -341,22 +338,48 @@ def load_navbar_css():
         border: none !important;
     }
 
+    /* Mobile optimizations */
     @media (max-width: 768px) {
-        .navbar {
-            flex-direction: column;
-            padding: 1rem;
+        .sticky-navbar {
+            padding: 0.75rem 1rem;
         }
-
-        .navbar-nav {
-            margin-top: 1rem;
+        
+        .menu-items {
+            gap: 1rem;
             flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.25rem;
         }
-
-        .language-selector {
-            top: 10px;
-            right: 10px;
+        
+        .menu-link {
+            padding: 1rem 1.5rem;
+            font-size: 0.875rem;
+            min-height: 48px; /* Touch target size */
+            min-width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 1.25rem;
+        }
+        
+        .chip-icon {
+            width: 18px;
+            height: 18px;
+        }
+    }
+    
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+        .menu-link {
+            min-height: 48px;
+            padding: 1rem 1.25rem;
+        }
+        
+        .menu-link:hover {
+            transform: none;
+            background: rgb(37 99 235 / 0.15);
         }
     }
     </style>
