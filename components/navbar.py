@@ -1,121 +1,107 @@
 import streamlit as st
 from config.constants import LANGUAGE_OPTIONS
 from translations.loader import t
-from utils.url_helper import URLHelper
+from styles.navbar import load_navbar_css
+
 
 def create_navbar():
     """Create and display the main navigation bar"""
     if 'language' not in st.session_state:
         st.session_state.language = 'pl'
 
-    current_page = URLHelper.get_page_param()
-    
-    # SIMPLE navbar that ACTUALLY WORKS - no JavaScript bullshit
+    load_navbar_css()
+
+    # Get current page from query params
+    try:
+        query_params = st.query_params
+        current_page = query_params.get("page", "")
+    except AttributeError:
+        # Fallback for older Streamlit versions
+        query_params = st.experimental_get_query_params()
+        current_page = query_params.get("page", [""])[0]
+
+    # Determine navigation links based on current page
+    if current_page == "testowanie_oprogramowania":
+        home_link = "?"
+        features_link = "?"
+        analytics_link = "?"
+        about_link = "?"
+        contact_link = "?"
+    else:
+        home_link = "#home"
+        features_link = "#features"
+        analytics_link = "#analytics"
+        about_link = "#about"
+        contact_link = "#contact"
+
+    # Create onclick handlers
+    home_onclick = "scrollToSection('home')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    features_onclick = "scrollToSection('features')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    analytics_onclick = "scrollToSection('analytics')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    about_onclick = "scrollToSection('about')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+    contact_onclick = "scrollToSection('contact')" if current_page != 'testowanie_oprogramowania' else "window.location.href='?'"
+
     st.markdown(f"""
-    <style>
-    .working-navbar {{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 9999;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid #e0e0e0;
-        padding: 15px 0;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-    }}
-    
-    .working-nav-container {{
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 20px;
-    }}
-    
-    .working-nav-logo {{
-        font-size: 28px;
-        font-weight: 800;
-        background: linear-gradient(135deg, #1a73e8 0%, #34a853 50%, #ea4335 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-decoration: none;
-    }}
-    
-    .working-nav-links {{
-        display: flex;
-        gap: 30px;
-        align-items: center;
-    }}
-    
-    .working-nav-link {{
-        color: #5f6368;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 16px;
-        padding: 10px 15px;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }}
-    
-    .working-nav-link:hover {{
-        color: #1a73e8;
-        background: rgba(26, 115, 232, 0.1);
-        transform: translateY(-1px);
-    }}
-    
-    /* Add proper scroll offset for all sections */
-    #home, #features, #analytics, #about, #contact {{
-        scroll-margin-top: 80px;
-    }}
-    
-    body {{
-        padding-top: 80px;
-    }}
-    
-    @media (max-width: 768px) {{
-        .working-nav-links {{
-            gap: 15px;
-        }}
-        .working-nav-link {{
-            font-size: 14px;
-            padding: 8px 10px;
-        }}
-    }}
-    </style>
-    
-    <div class="working-navbar">
-        <div class="working-nav-container">
-            <a href="#home" class="working-nav-logo">🔧 aIRONick</a>
-            <div class="working-nav-links">
-                <a href="#home" class="working-nav-link">{t('navbar.home')}</a>
-                <a href="#features" class="working-nav-link">{t('navbar.software_testing')}</a>
-                <a href="#analytics" class="working-nav-link">{t('navbar.electrician')}</a>
-                <a href="#about" class="working-nav-link">{t('navbar.youtube')}</a>
-                <a href="#contact" class="working-nav-link">{t('navbar.contact')}</a>
+    <div class="sticky-navbar">
+        <div class="navbar-content">
+            <div class="menu-items">
+                <div class="logo"><span class="chip-icon"></span> aIRONick</div>
+                <a href="{home_link}" class="menu-link" id="menu-home" onclick="{home_onclick}; return false;">{t('navbar.home')}</a>
+                <a href="{features_link}" class="menu-link" id="menu-features" onclick="{features_onclick}; return false;">{t('navbar.software_testing')}</a>
+                <a href="{analytics_link}" class="menu-link" id="menu-analytics" onclick="{analytics_onclick}; return false;">{t('navbar.electrician')}</a>
+                <a href="{about_link}" class="menu-link" id="menu-about" onclick="{about_onclick}; return false;">{t('navbar.youtube')}</a>
+                <a href="{contact_link}" class="menu-link" id="menu-contact" onclick="{contact_onclick}; return false;">{t('navbar.contact')}</a>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 
-    # Language selector
-    col1, col2, col3, col4 = st.columns([3, 1, 1, 1])
-    with col4:
-        st.markdown("""
-        <style>
-        div[data-testid="column"]:nth-child(4) {
-            position: fixed !important;
-            top: 20px !important;
-            right: 20px !important;
-            z-index: 10000 !important;
-            width: 100px !important;
+    # Add JavaScript separately
+    st.markdown("""
+    <script>
+    function scrollToSection(sectionId) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        </style>
-        """, unsafe_allow_html=True)
-        
+    }
+
+    // Highlight active menu item based on scroll position
+    function updateActiveMenu() {
+        const sections = ['home', 'features', 'analytics', 'about', 'contact'];
+
+        sections.forEach(section => {
+            const element = document.getElementById(section);
+            const menuLink = document.getElementById('menu-' + section);
+
+            if (element && menuLink) {
+                const rect = element.getBoundingClientRect();
+                const isInView = rect.top <= 100 && rect.bottom >= 100;
+
+                if (isInView) {
+                    // Remove active class from all menu items
+                    document.querySelectorAll('.menu-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    // Add active class to current menu item
+                    menuLink.classList.add('active');
+                }
+            }
+        });
+    }
+
+    // Update active menu on scroll
+    window.addEventListener('scroll', updateActiveMenu);
+    // Update active menu on load
+    window.addEventListener('load', updateActiveMenu);
+    </script>
+    """, unsafe_allow_html=True)
+
+    # Language dropdown integrated into navbar
+    col1, col2, col3, col4 = st.columns([3, 1, 1, 1])
+
+    with col4:
+        current_display = "🇵🇱 Polski" if st.session_state.language == 'pl' else "🇬🇧 English"
         selected = st.selectbox(
             "",
             list(LANGUAGE_OPTIONS.keys()),
