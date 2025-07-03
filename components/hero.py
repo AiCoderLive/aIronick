@@ -2,10 +2,15 @@ import streamlit as st
 from translations.loader import t
 
 def create_hero_section():
-    """Create and display the hero section"""
-    st.markdown(f"""
-    <div class="hero-section" id="home" style="padding-top: 120px;">
-        <h1 class="hero-title">{t('hero.title')}</h1>
-        <p class="hero-subtitle">{t('hero.subtitle')}</p>
-    </div>
-    """, unsafe_allow_html=True)
+    """Create and display the hero section using pure Streamlit"""
+    
+    # Hero section with pure Streamlit
+    st.container()
+    col1, col2, col3 = st.columns([1, 2, 1])
+    
+    with col2:
+        st.markdown("# " + t('hero.title'))
+        st.markdown("#### " + t('hero.subtitle'))
+        
+        # Add some spacing
+        st.markdown("<br>", unsafe_allow_html=True)

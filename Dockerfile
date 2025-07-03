@@ -12,7 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY app.py .
 COPY config/ ./config/
 COPY components/ ./components/
-COPY styles/ ./styles/
 COPY app_pages/ ./app_pages/
 COPY translations/ ./translations/
 COPY utils/ ./utils/

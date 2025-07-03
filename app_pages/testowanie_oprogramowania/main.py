@@ -1,6 +1,4 @@
 import streamlit as st
-from styles.base import load_base_css
-from styles.testing_page import load_testing_page_css
 from components.navbar import create_navbar
 from .sidebar import create_testing_sidebar
 from .sections.overview import create_overview_section
@@ -9,9 +7,7 @@ from .sections.performance import create_performance_testing_section
 from utils.url_helper import URLHelper
 
 def show_testing_page():
-    """Display the software testing page"""
-    load_base_css()
-    load_testing_page_css()
+    """Display the software testing page using pure Streamlit"""
     
     # Initialize session state for selected section
     if 'selected_section' not in st.session_state:
@@ -22,18 +18,10 @@ def show_testing_page():
     
     create_testing_sidebar()
     
-    # Main content wrapper with top padding
-    st.markdown('<div style="padding-top: 100px;">', unsafe_allow_html=True)
-    
     # Page header
-    st.markdown("""
-    <div class="page-header">
-        <h1 class="page-title">🔧 Testowanie Oprogramowania</h1>
-        <p class="page-subtitle">Profesjonalne usługi testowania oprogramowania - automatyzacja, wydajność, jakość</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("# 🔧 Testowanie Oprogramowania")
+    st.markdown("#### Profesjonalne usługi testowania oprogramowania - automatyzacja, wydajność, jakość")
+    st.markdown("---")
     
     # Main content based on selected section
     if st.session_state.selected_section == 'overview':

@@ -3,81 +3,51 @@ from translations.loader import t
 from config.constants import CONTACT_INFO
 
 def create_about_section():
-    """Create and display the about/YouTube section"""
-    st.markdown(f"""
-    <div class="section" id="about" style="padding-top: 100px;">
-        <h2 class="section-title">{t('youtube.title')}</h2>
-    """, unsafe_allow_html=True)
+    """Create and display the about/YouTube section using pure Streamlit"""
+        
+    # About section
+    st.markdown("---")
+    st.markdown("## " + t('youtube.title'))
 
-    st.markdown(f"### 🎥 {t('youtube.watch_videos')}")
+    st.markdown("### 🎥 " + t('youtube.watch_videos'))
     st.write(t('youtube.description'))
 
-    # Create centered button using Streamlit
+    # Create centered button
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        if st.button(f"🚀 {t('youtube.visit_channel')}", key="youtube_btn"):
-            st.markdown(f'<meta http-equiv="refresh" content="0; url={CONTACT_INFO["youtube"]}">',
-                        unsafe_allow_html=True)
-        st.markdown("""
-        <style>
-        .stButton > button {
-            background: linear-gradient(45deg, #ff0000, #cc0000);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 16px;
-            width: 100%;
-        }
-        .stButton > button:hover {
-            transform: scale(1.05);
-            transition: transform 0.3s ease;
-        }
-        </style>
-        """, unsafe_allow_html=True)
+        if st.button(f"🚀 {t('youtube.visit_channel')}", key="youtube_btn", use_container_width=True):
+            st.link_button("Otwórz YouTube", CONTACT_INFO["youtube"])
 
-    # Add some spacing
     st.markdown("<br>", unsafe_allow_html=True)
 
     # Featured playlists section
-    st.markdown(f"### 📺 {t('youtube.featured_playlists')}")
+    st.markdown("### 📺 " + t('youtube.featured_playlists'))
 
     # Create playlist cards
     col1, col2 = st.columns(2)
 
     with col1:
-        st.markdown(f"""
-        <div class="card" style="text-align: center;">
-            <h4>🔧 {t('youtube.playlist_software_testing')}</h4>
-            <p>{t('youtube.playlist_software_testing_desc')}</p>
-            <a href="{CONTACT_INFO["youtube"]}/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <div class="card" style="text-align: center;">
-            <h4>🎮 {t('youtube.playlist_gaming_tech')}</h4>
-            <p>{t('youtube.playlist_gaming_tech_desc')}</p>
-            <a href="{CONTACT_INFO["youtube"]}/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
-        </div>
-        """, unsafe_allow_html=True)
+        with st.container():
+            st.markdown("#### 🔧 " + t('youtube.playlist_software_testing'))
+            st.markdown(t('youtube.playlist_software_testing_desc'))
+            st.link_button("▶️ " + t('youtube.watch_playlist'), f"{CONTACT_INFO['youtube']}/playlists", use_container_width=True)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        with st.container():
+            st.markdown("#### 🎮 " + t('youtube.playlist_gaming_tech'))
+            st.markdown(t('youtube.playlist_gaming_tech_desc'))
+            st.link_button("▶️ " + t('youtube.watch_playlist'), f"{CONTACT_INFO['youtube']}/playlists", use_container_width=True)
 
     with col2:
-        st.markdown(f"""
-        <div class="card" style="text-align: center;">
-            <h4>⚡ {t('youtube.playlist_electrical_work')}</h4>
-            <p>{t('youtube.playlist_electrical_work_desc')}</p>
-            <a href="{CONTACT_INFO["youtube"]}/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
-        </div>
-        """, unsafe_allow_html=True)
-
-        st.markdown(f"""
-        <div class="card" style="text-align: center;">
-            <h4>💻 {t('youtube.playlist_hardware_reviews')}</h4>
-            <p>{t('youtube.playlist_hardware_reviews_desc')}</p>
-            <a href="{CONTACT_INFO["youtube"]}/playlists" target="_blank" style="color: #ff0000; text-decoration: none;">▶️ {t('youtube.watch_playlist')}</a>
-        </div>
-        """, unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
+        with st.container():
+            st.markdown("#### ⚡ " + t('youtube.playlist_electrical_work'))
+            st.markdown(t('youtube.playlist_electrical_work_desc'))
+            st.link_button("▶️ " + t('youtube.watch_playlist'), f"{CONTACT_INFO['youtube']}/playlists", use_container_width=True)
+        
+        st.markdown("<br>", unsafe_allow_html=True)
+        
+        with st.container():
+            st.markdown("#### 💻 " + t('youtube.playlist_hardware_reviews'))
+            st.markdown(t('youtube.playlist_hardware_reviews_desc'))
+            st.link_button("▶️ " + t('youtube.watch_playlist'), f"{CONTACT_INFO['youtube']}/playlists", use_container_width=True)
