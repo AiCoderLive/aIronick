@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aIRONick</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">aIRONick</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('home')">Strona domowa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('testowanie')">Testowanie oprogramowania</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('elektryka')">Elektryka</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('youtube')">YouTube</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showSection('kontakt')">Kontakt</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Loading spinner -->
+    <div id="loading" class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Ładowanie...</span>
+        </div>
+    </div>
+
+    <!-- Main content container -->
+    <div class="main-content">
+        <!-- Include all sections -->
+        {% include 'sections/home.html' %}
+        {% include 'sections/testowanie.html' %}
+        {% include 'sections/elektryka.html' %}
+        {% include 'sections/youtube.html' %}
+        {% include 'sections/kontakt.html' %}
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome for icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    
+    <!-- Application modules -->
+    <script src="{{ url_for('static', path='/js/modules/utils.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/modules/navigation.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/modules/app.js') }}"></script>
+    
+    <!-- Main application script -->
+    <script src="{{ url_for('static', path='/js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+/* aIRONick Main Styles */
+/* Import all component styles */
+@import url('components/base.css');
+@import url('components/navigation.css');
+@import url('components/sections.css');
+@import url('components/cards.css');
+
+/* Additional custom styles */
+.main-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section p {
+        font-size: 1rem;
+    }
+    
+    .main-content {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    #loading {
+        display: none !important;
+    }
+    
+    .section {
+        page-break-inside: avoid;
+    }
+}

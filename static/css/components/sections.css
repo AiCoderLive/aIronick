@@ -1,0 +1,150 @@
+/* Section styles */
+.section {
+    animation: fadeIn 0.5s ease-in-out;
+    min-height: 60vh;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section h2 {
+    color: var(--dark-color);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+.section h3 {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.section p {
+    color: var(--secondary-color);
+    line-height: 1.6;
+}
+
+/* Loading spinner */
+#loading {
+    margin-top: 5rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+
+.spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.3em;
+    border-color: var(--primary-color);
+    border-right-color: transparent;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Section specific styles */
+#home-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: auto;
+}
+
+#home-section .hero-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 4rem 0;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#home-section .container {
+    padding: 2rem 1rem;
+}
+
+#home-section .card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+#home-section .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2);
+}
+
+#home-section .badge {
+    margin: 0.2rem;
+}
+
+#home-section .fa-3x {
+    margin-bottom: 1rem;
+}
+
+#testowanie-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+#testowanie-section h2 {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+#elektryka-section {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+#elektryka-section h2 {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+#youtube-section {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+#youtube-section h2 {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
+
+#kontakt-section {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    color: white;
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+#kontakt-section h2 {
+    color: white;
+    border-bottom-color: rgba(255, 255, 255, 0.3);
+}
