@@ -42,6 +42,14 @@
             <span class="visually-hidden">Ładowanie...</span>
         </div>
     </div>
+    
+    <!-- Fallback for when JavaScript fails to load -->
+    <noscript>
+        <style>
+            #loading { display: none !important; }
+            .section { display: block !important; }
+        </style>
+    </noscript>
 
     <!-- Main content container -->
     <div class="main-content">

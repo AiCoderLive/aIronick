@@ -12,6 +12,14 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 # Templates
 templates = Jinja2Templates(directory="templates")
 
+@app.on_event("startup")
+async def startup_event():
+    print("=" * 60)
+    print("🚀 aIRONick Application Started!")
+    print("=" * 60)
+    print("📍 OTWÓRZ W PRZEGLĄDARCE: http://localhost:8501")
+    print("=" * 60)
+
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
@@ -23,4 +31,4 @@ async def health_check():
 if __name__ == "__main__":
     import uvicorn
     port = int(os.getenv("PORT", 8000))
-    uvicorn.run(app, host="0.0.0.0", port=port)
+    uvicorn.run(app, host="0.0.0.0", port=port, log_level="warning")

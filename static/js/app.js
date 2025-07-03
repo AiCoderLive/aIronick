@@ -12,11 +12,19 @@ window.aIronick = {
 document.addEventListener('DOMContentLoaded', function() {
     console.log('aIRONick application starting...');
     
-    // Wait for all modules to load
-    setTimeout(() => {
-        initializeApp();
-    }, 100);
+    // Immediately initialize instead of waiting
+    initializeApp();
 });
+
+// Fallback timeout in case something goes wrong
+setTimeout(function() {
+    const loadingElement = document.getElementById('loading');
+    if (loadingElement && !loadingElement.classList.contains('d-none')) {
+        console.warn('Force hiding loading spinner after timeout');
+        loadingElement.classList.add('d-none');
+        showSection('home');
+    }
+}, 3000);
 
 function initializeApp() {
     // Hide loading spinner
