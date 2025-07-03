@@ -3,7 +3,7 @@ services:
   webapp:
     build: .
     ports:
-      - "8501:8501"  # Zmień z 8000:8000 na 8501:8501
+      - "8501:8000"
     volumes:
       - ./static:/app/static
       - ./templates:/app/templates
