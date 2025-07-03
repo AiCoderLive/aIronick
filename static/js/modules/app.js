@@ -8,6 +8,7 @@ class App {
     init() {
         this.bindEvents();
         this.hideLoading();
+        this.hideAllSections();
         this.showSection(this.currentSection);
     }
 
@@ -56,6 +57,12 @@ class App {
         if (loadingElement) {
             loadingElement.classList.add('d-none');
         }
+    }
+
+    hideAllSections() {
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.add('d-none');
+        });
     }
 }
 

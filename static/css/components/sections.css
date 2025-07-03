@@ -2,6 +2,11 @@
 .section {
     animation: fadeIn 0.5s ease-in-out;
     min-height: 60vh;
+    display: block;
+}
+
+.section.d-none {
+    display: none !important;
 }
 
 @keyframes fadeIn {

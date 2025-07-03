@@ -25,6 +25,11 @@ function initializeApp() {
         loadingElement.classList.add('d-none');
     }
     
+    // Hide all sections first
+    document.querySelectorAll('.section').forEach(section => {
+        section.classList.add('d-none');
+    });
+    
     // Show default section
     showSection('home');
     
