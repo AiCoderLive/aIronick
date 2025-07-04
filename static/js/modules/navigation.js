@@ -15,6 +15,15 @@ class Navigation {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.handleNavClick(e.target);
+                
+                // Get section name from onclick attribute
+                const onclick = e.target.getAttribute('onclick');
+                if (onclick) {
+                    const sectionMatch = onclick.match(/showSection\('(\w+)'\)/);
+                    if (sectionMatch) {
+                        showSection(sectionMatch[1]);
+                    }
+                }
             });
         });
     }
@@ -24,8 +33,18 @@ class Navigation {
         const navCollapse = document.querySelector('.navbar-collapse');
         
         if (toggleButton && navCollapse) {
-            toggleButton.addEventListener('click', () => {
-                navCollapse.classList.toggle('show');
+            toggleButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Try Bootstrap collapse first
+                if (window.bootstrap && bootstrap.Collapse) {
+                    const bsCollapse = new bootstrap.Collapse(navCollapse, {
+                        toggle: true
+                    });
+                } else {
+                    // Fallback manual toggle
+                    navCollapse.classList.toggle('show');
+                }
             });
         }
     }
