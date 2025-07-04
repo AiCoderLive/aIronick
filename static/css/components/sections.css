@@ -48,14 +48,21 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Loading spinner */
+/* Loading spinner - simplified positioning */
 #loading {
-    margin-top: 5rem;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#loading.d-none {
+    display: none !important;
 }
 
 .spinner-border {
