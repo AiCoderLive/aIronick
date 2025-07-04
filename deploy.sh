@@ -15,7 +15,7 @@ NC='\033[0m' # No Color
 # Configuration
 PROJECT_NAME="aironick"
 COMPOSE_FILE="docker-compose.yml"
-GIT_REPO="https://github.com/YOUR_USERNAME/YOUR_REPO.git"  # Update this with your repo URL
+GIT_REPO="https://github.com/AiCoderLive/aIronick.git"  # Update this with your repo URL
 BRANCH="main"  # or master, depending on your default branch
 BACKUP_DIR="backups"
 LOG_FILE="deploy.log"
