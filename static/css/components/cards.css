@@ -1,9 +1,9 @@
 /* Card styles */
 .card {
-    background-color: white;
+    background-color: var(--bg-primary) !important;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
-    border: 1px solid rgba(0, 0, 0, 0.125);
+    border: 1px solid var(--border-color) !important;
     margin-bottom: 1.5rem;
     overflow: hidden;
     transition: var(--transition);
@@ -15,85 +15,163 @@
 }
 
 .card-header {
-    background-color: #ffffff;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: var(--bg-primary) !important;
+    border-bottom: 1px solid var(--border-color) !important;
     padding: 1rem 1.25rem;
     font-weight: 600;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card-header h4,
+.card-header h5,
+.card-header h6 {
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .card-body {
     padding: 1.25rem;
 }
 
+.card-body p,
+.card-body li {
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
 .card-title {
     margin-bottom: 0.75rem;
     color: var(--dark-color);
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .card-text {
     color: var(--secondary-color);
     margin-bottom: 1rem;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .card-footer {
-    background-color: rgba(0, 0, 0, 0.03);
-    border-top: 1px solid rgba(0, 0, 0, 0.125);
+    background-color: rgba(0, 0, 0, 0.03) !important;
+    border-top: 1px solid var(--border-color) !important;
     padding: 0.75rem 1.25rem;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Card variations */
 .card-primary {
-    border-color: var(--primary-color);
+    border-color: var(--primary-color) !important;
 }
 
 .card-primary .card-header {
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--primary-color) !important;
+    color: white !important;
+}
+
+.card-primary .card-header h4,
+.card-primary .card-header h5,
+.card-primary .card-header h6 {
+    color: white !important;
 }
 
 .card-secondary {
-    border-color: var(--secondary-color);
+    border-color: var(--secondary-color) !important;
 }
 
 .card-secondary .card-header {
-    background-color: var(--secondary-color);
-    color: white;
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.card-secondary .card-header h4,
+.card-secondary .card-header h5,
+.card-secondary .card-header h6 {
+    color: white !important;
 }
 
 .card-success {
-    border-color: var(--success-color);
+    border-color: var(--success-color) !important;
 }
 
 .card-success .card-header {
-    background-color: var(--success-color);
-    color: white;
+    background-color: var(--success-color) !important;
+    color: white !important;
+}
+
+.card-success .card-header h4,
+.card-success .card-header h5,
+.card-success .card-header h6 {
+    color: white !important;
 }
 
 .card-info {
-    border-color: var(--info-color);
+    border-color: var(--info-color) !important;
 }
 
 .card-info .card-header {
-    background-color: var(--info-color);
-    color: white;
+    background-color: var(--info-color) !important;
+    color: white !important;
+}
+
+.card-info .card-header h4,
+.card-info .card-header h5,
+.card-info .card-header h6 {
+    color: white !important;
 }
 
 .card-warning {
-    border-color: var(--warning-color);
+    border-color: var(--warning-color) !important;
 }
 
 .card-warning .card-header {
-    background-color: var(--warning-color);
-    color: var(--dark-color);
+    background-color: var(--warning-color) !important;
+    color: var(--dark-color) !important;
+}
+
+.card-warning .card-header h4,
+.card-warning .card-header h5,
+.card-warning .card-header h6 {
+    color: var(--dark-color) !important;
 }
 
 .card-danger {
-    border-color: var(--danger-color);
+    border-color: var(--danger-color) !important;
 }
 
 .card-danger .card-header {
-    background-color: var(--danger-color);
-    color: white;
+    background-color: var(--danger-color) !important;
+    color: white !important;
+}
+
+.card-danger .card-header h4,
+.card-danger .card-header h5,
+.card-danger .card-header h6 {
+    color: white !important;
+}
+
+.card-light {
+    border-color: var(--border-light) !important;
+}
+
+.card-light .card-header {
+    background-color: var(--light-color) !important;
+    color: var(--dark-color) !important;
+}
+
+.card-light .card-header h4,
+.card-light .card-header h5,
+.card-light .card-header h6 {
+    color: var(--dark-color) !important;
 }
 
 /* Responsive card grid */

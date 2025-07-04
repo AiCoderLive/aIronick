@@ -26,17 +26,26 @@
     font-weight: 600;
     border-bottom: 2px solid var(--primary-color);
     padding-bottom: 0.5rem;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .section h3 {
     color: var(--secondary-color);
     margin-bottom: 1rem;
     font-weight: 500;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .section p {
     color: var(--secondary-color);
     line-height: 1.6;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 /* Loading spinner */
@@ -69,16 +78,31 @@
 
 /* Section specific styles */
 #home-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     min-height: auto;
 }
 
 #home-section .hero-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     color: white;
     padding: 4rem 0;
     text-align: center;
     margin-bottom: 0;
+}
+
+#home-section .hero-section h1 {
+    font-family: var(--font-family-base);
+    font-weight: 700;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#home-section .hero-section p {
+    font-family: var(--font-family-base);
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #home-section .container {
@@ -87,6 +111,8 @@
 
 #home-section .card {
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background-color: var(--bg-primary) !important;
+    border-color: var(--border-color) !important;
 }
 
 #home-section .card:hover {
@@ -96,6 +122,9 @@
 
 #home-section .badge {
     margin: 0.2rem;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #home-section .fa-3x {
@@ -103,7 +132,7 @@
 }
 
 #testowanie-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
     color: white;
     border-radius: var(--border-radius);
     padding: 2rem;
@@ -111,12 +140,33 @@
 }
 
 #testowanie-section h2 {
-    color: white;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    color: white !important;
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#testowanie-section h3,
+#testowanie-section h4,
+#testowanie-section h5,
+#testowanie-section h6 {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#testowanie-section p,
+#testowanie-section li {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #elektryka-section {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
     color: white;
     border-radius: var(--border-radius);
     padding: 2rem;
@@ -124,12 +174,33 @@
 }
 
 #elektryka-section h2 {
-    color: white;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    color: white !important;
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#elektryka-section h3,
+#elektryka-section h4,
+#elektryka-section h5,
+#elektryka-section h6 {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#elektryka-section p,
+#elektryka-section li {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #youtube-section {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
     color: white;
     border-radius: var(--border-radius);
     padding: 2rem;
@@ -137,12 +208,33 @@
 }
 
 #youtube-section h2 {
-    color: white;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    color: white !important;
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#youtube-section h3,
+#youtube-section h4,
+#youtube-section h5,
+#youtube-section h6 {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#youtube-section p,
+#youtube-section li {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 #kontakt-section {
-    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%) !important;
     color: white;
     border-radius: var(--border-radius);
     padding: 2rem;
@@ -150,6 +242,27 @@
 }
 
 #kontakt-section h2 {
-    color: white;
-    border-bottom-color: rgba(255, 255, 255, 0.3);
+    color: white !important;
+    border-bottom-color: rgba(255, 255, 255, 0.3) !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#kontakt-section h3,
+#kontakt-section h4,
+#kontakt-section h5,
+#kontakt-section h6 {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#kontakt-section p,
+#kontakt-section li {
+    color: white !important;
+    font-family: var(--font-family-base);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
